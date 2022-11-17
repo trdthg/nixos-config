@@ -28,8 +28,6 @@
       ./sway.nix
     ];
 
-  hardware.video.hidpi.enable = true;
-
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -78,15 +76,43 @@
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
+
+  hardware.video.hidpi.enable = true;
+  hardware.bluetooth.enable = true;
+
   # Enable sound.
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio = {
+    enable = true;
+    extraModules = [ ];
+    package = pkgs.pulseaudioFull;
+  };
+  services.blueman.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
   security.polkit.enable = true;
   services.dbus.enable = true;
+  services.gnome.gnome-keyring.enable = true;
+
+  # polkit-gnome-authentication-agent-1
+
+  # systemd = {
+  #     user.services.polkit-gnome-authentication-agent-1 = {
+  #     description = "polkit-gnome-authentication-agent-1";
+  #     wants = [ "graphical-session.target" ];
+  #     wantedBy = [ "graphical-session.target" ];
+  #     after = [ "graphical-session.target" ];
+  #     serviceConfig = {
+  #       Type = "simple";
+  #       ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+  #       Restart = "on-failure";
+  #       RestartSec = 1;
+  #       TimeoutStopSec = 10;
+  #     };
+  #   };
+  # };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.trdthg = {
@@ -95,6 +121,7 @@
     password = "1789";
     extraGroups = [ "wheel" "video" "audio" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
+      polkit_gnome
       clang
       gcc
       firefox
