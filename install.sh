@@ -1,3 +1,4 @@
+#!/bin/sh
 # rm ~/.config/sway/config
 # mv -f ./pkgs/sway/config ~/.config/sway/config
 

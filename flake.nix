@@ -25,18 +25,18 @@
 
         ./configuration.nix
 
-	      home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.trdthg = import ./home.nix;
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.trdthg = import ./home.nix;
 
-            # Optionally, use home-manager.extraSpecialArgs to pass
-            # arguments to home.nix
-          }
+          # Optionally, use home-manager.extraSpecialArgs to pass
+          # arguments to home.nix
+        }
 
         nur.nixosModules.nur
-	      ({ config, ... }: {
+        ({ config, ... }: {
           environment.systemPackages = [
             config.nur.repos.linyinfeng.clash-premium
             config.nur.repos.linyinfeng.clash-for-windows

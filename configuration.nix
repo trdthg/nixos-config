@@ -15,17 +15,19 @@
 
   nixpkgs.config = {
     allowUnfree = true;
-    #packageOverrides = pkgs: {
-      # nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-      #  inherit pkgs;
-      #};
-    #};
+    # packageOverrides = pkgs: {
+    #   nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+    #    inherit pkgs;
+    #   };
+    # };
   };
 
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./sway.nix
+      ./pkgs/vscode.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -35,7 +37,7 @@
   networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   networking.wireless = {
-    enable = true;  # Enables wireless support via wpa_supplicant.
+    enable = true; # Enables wireless support via wpa_supplicant.
     networks = {
       "408".psk = "504504504";
       "TP-LINK_7A1F".psk = "4602yyds";
@@ -121,6 +123,7 @@
     password = "1789";
     extraGroups = [ "wheel" "video" "audio" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
+      nixpkgs-fmt
       polkit_gnome
       clang
       gcc
@@ -137,8 +140,8 @@
     enabled = "fcitx5";
     fcitx5.enableRimeData = true;
     fcitx5.addons = with pkgs; [
-     fcitx5-rime
-     fcitx5-chinese-addons
+      fcitx5-rime
+      fcitx5-chinese-addons
     ];
     # enabled = "ibus";
     # ibus.engines = with pkgs.ibus-engines; [
