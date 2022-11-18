@@ -27,7 +27,6 @@
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./sway.nix
-      ./pkgs/vscode.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -116,26 +115,6 @@
   #   };
   # };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.trdthg = {
-    isNormalUser = true;
-    home = "/home/trdthg";
-    password = "1789";
-    extraGroups = [ "wheel" "video" "audio" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [
-      nixpkgs-fmt
-      polkit_gnome
-      clang
-      gcc
-      firefox
-      google-chrome
-      neofetch
-      wdisplays
-      wlr-randr
-      # thunderbird
-    ];
-  };
-
   i18n.inputMethod = {
     enabled = "fcitx5";
     fcitx5.enableRimeData = true;
@@ -173,8 +152,36 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
   ];
+
+  programs.zsh.enable = true;
+  # users.defaultUserShell = pkgs.zsh;
+  users.users.trdthg.shell = pkgs.zsh;
+  # add a shell to /etc/shells
   environment.shells = with pkgs; [ zsh ];
 
+
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.trdthg = {
+    isNormalUser = true;
+    home = "/home/trdthg";
+    password = "1789";
+    extraGroups = [ "wheel" "video" "audio" ]; # Enable ‘sudo’ for the user.
+    packages = with pkgs; [
+      nixpkgs-fmt
+      polkit_gnome
+      clang
+      gcc
+
+      firefox
+      google-chrome
+      tdesktop
+
+      neofetch
+      wdisplays
+      wlr-randr
+      # thunderbird
+    ];
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

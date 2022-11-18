@@ -53,11 +53,26 @@ bindsym XF86AudioRaiseVolume exec 'pactl set-sink-volume @DEFAULT_SINK@ +1%'
 bindsym XF86AudioLowerVolume exec 'pactl set-sink-volume @DEFAULT_SINK@ -1%'
 bindsym XF86AudioMute exec 'pactl set-sink-mute @DEFAULT_SINK@ toggle'
 
-default_border none
+# default_border none
+# default_floating_border none
+# font pango:monospace 0
+# titlebar_padding 1
+# titlebar_border_thickness 0
 
-exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
-exec dbus-sway-environment
+default_border pixel 2
+default_floating_border pixel 2
+hide_edge_borders --i3 smart
+smart_borders on
+smart_gaps on
+titlebar_border_thickness 0
+
+exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+
+# exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+# exec dbus-sway-environment
 exec configure-gtk
+exec cfw &
+exec fcitx5
 
 ### Idle configuration
 #
@@ -71,6 +86,11 @@ exec configure-gtk
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
+
+exec swayidle -w \
+         timeout 300 'swaylock -f -c 000000' \
+         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+         before-sleep 'swaylock -f -c 000000'
 
 ### Input configuration
 #

@@ -63,7 +63,6 @@ in
     wrapperFeatures.gtk = true;
     extraPackages = with pkgs; [
       # vscodium-fhs
-      vscode
       alacritty
       wofi
       bemenu
