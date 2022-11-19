@@ -21,11 +21,12 @@
     package = pkgs.nixUnstable;
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
-      min-free = 1024 * 1024 * 1024; # bytes
+      auto-optimise-store = true;
     };
     gc = {
       automatic = true;
-      options = lib.mkDefault ''
+      dates = "weekly";
+      options = ''
         --delete-older-than 14d
       '';
     };
