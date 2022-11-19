@@ -26,7 +26,7 @@
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./sway.nix
+      ../../pkgs/default.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -152,6 +152,26 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
   ];
+
+  environment.sessionVariables = {
+    EDITOR = "vim";
+
+    # Set the default browser to Firefox.
+    # BROWSER = "firefox";
+    # BROWSER = "chromium";
+    BROWSER = "google-chrome";
+
+    # set gtk protal
+    GTK_USE_PORTAL = "1";
+  };
+
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    # gtk portal needed to make gtk apps happy
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    # gtkUsePortal = true;
+  };
 
   programs.zsh.enable = true;
   # users.defaultUserShell = pkgs.zsh;

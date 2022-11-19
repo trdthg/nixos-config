@@ -3,9 +3,7 @@
 {
 
   imports = [
-    ./vscode.nix
-    ./zsh.nix
-    ./git.nix
+    ../../modules/default.nix
   ];
 
   # Home Manager needs a bit of information about you and the
@@ -13,9 +11,10 @@
   home.username = "trdthg";
   home.homeDirectory = "/home/trdthg";
 
-  # home.packages = [                               1
-  #   pkgs.htop
-  # ];
+  home.packages = with pkgs; [
+    rustup
+    nodejs-16_x
+  ];
 
 
   # This value determines the Home Manager release that your
