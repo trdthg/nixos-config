@@ -5,9 +5,30 @@
 { config, pkgs, ... }:
 
 {
+
+  imports =
+    [
+      # Include the results of the hardware scan.
+      ./hardware-configuration.nix
+      ../../pkgs/default.nix
+    ];
+
+  # Use the systemd-boot EFI boot loader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
   nix = {
     package = pkgs.nixUnstable;
-    settings.experimental-features = [ "nix-command" "flakes" ];
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      min-free = 1024 * 1024 * 1024; # bytes
+    };
+    gc = {
+      automatic = true;
+      options = lib.mkDefault ''
+        --delete-older-than 14d
+      '';
+    };
     extraOptions = ''
 
     '';
@@ -21,17 +42,6 @@
     #   };
     # };
   };
-
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ../../pkgs/default.nix
-    ];
-
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
