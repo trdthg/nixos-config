@@ -16,7 +16,7 @@
     shellAliases = {
       ll = "ls -l";
       # update = "sudo nixos-rebuild switch";
-      chrome = "google-chrome-stable --enable-features=UseOzonePlatform --ozone-platform=wayland";
+      chrome = "google-chrome-stable --enable-features=UseOzonePlatform --ozone-platform=wayland --password-store=basic";
     };
     history = {
       size = 10000;

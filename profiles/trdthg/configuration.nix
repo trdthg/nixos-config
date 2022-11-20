@@ -173,7 +173,7 @@
     BROWSER = "google-chrome";
 
     # set gtk protal
-    GTK_USE_PORTAL = "1";
+    GTK_USE_PORTAL = "0";
   };
 
   xdg.portal = {
