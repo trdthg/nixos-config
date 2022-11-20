@@ -91,15 +91,24 @@
 
   hardware.video.hidpi.enable = true;
   hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
 
   # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio = {
+  # sound.enable = true;
+  # hardware.pulseaudio = {
+  #   enable = true;
+  #   extraModules = [ ];
+  #   package = pkgs.pulseaudioFull;
+  # };
+
+  security.rtkit.enable = true;
+  services.pipewire = {
     enable = true;
-    extraModules = [ ];
-    package = pkgs.pulseaudioFull;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
   };
-  services.blueman.enable = true;
+
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -162,27 +171,9 @@
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
+    pulseaudioFull
   ];
 
-  environment.sessionVariables = {
-    EDITOR = "vim";
-
-    # Set the default browser to Firefox.
-    # BROWSER = "firefox";
-    # BROWSER = "chromium";
-    BROWSER = "google-chrome";
-
-    # set gtk protal
-    GTK_USE_PORTAL = "0";
-  };
-
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    # gtk portal needed to make gtk apps happy
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    # gtkUsePortal = true;
-  };
 
   programs.zsh.enable = true;
   # users.defaultUserShell = pkgs.zsh;
@@ -199,7 +190,6 @@
     extraGroups = [ "wheel" "video" "audio" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       nixpkgs-fmt
-      polkit_gnome
       clang
       gcc
 

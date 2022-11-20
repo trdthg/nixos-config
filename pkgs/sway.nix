@@ -44,16 +44,31 @@ let
 
 in
 {
-  # services.pipewire = {
-  #   enable = true;
-  #   alsa.enable = true;
-  #   # pulse.enable = true;
-  # };
+  environment.sessionVariables = {
+    EDITOR = "vim";
 
+    # Set the default browser to Firefox.
+    # BROWSER = "firefox";
+    # BROWSER = "chromium";
+    BROWSER = "google-chrome";
+
+    # set gtk protal
+    GTK_USE_PORTAL = "1";
+  };
+
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    # gtk portal needed to make gtk apps happy
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    # gtkUsePortal = true;
+  };
 
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
+    # environment.systemPackages = with pkgs; [
+
     extraPackages = with pkgs; [
       # vscodium-fhs
       alacritty
@@ -61,7 +76,6 @@ in
       bemenu
       grim
       slurp # screenshot functionality
-      gnome3.adwaita-icon-theme
       waybar
       swaylock
       swayidle
@@ -78,15 +92,5 @@ in
       gnome3.adwaita-icon-theme # default gnome cursors
       wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
     ];
-    extraSessionCommands = ''
-      # export GTK_IM_MODULE=fcitx5
-      # export XMODIFIERS=@im=fcitx5
-      # export QT_IM_MODULE=fcitx5
-
-      # export GDK_SCALE=2
-      # export GDK_DPI_SCALE=0.5
-
-      # export MOZ_ENABLE_WAYLAND=1
-    '';
   };
 }
