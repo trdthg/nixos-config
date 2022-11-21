@@ -70,9 +70,6 @@
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
 
-
-
-
   # Configure keymap in X11
   # services.xserver.layout = "us";
   # services.xserver.xkbOptions = {
@@ -83,11 +80,26 @@
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
+  # Enable touchpad support (enabled default in most desktopManager).
+  # services.xserver.libinput.enable = true;
+
+  #
+  # Fix sway home-manager problems
+  #
+  # Fix pointer can't display
   hardware.opengl = {
     enable = true;
     driSupport = true;
   };
+  # Fix swaylock can't unlock
+  # Allow swaylock to unlock the computer for us
+  security.pam.services.swaylock = {
+    text = "auth include login";
+  };
 
+  #
+  # video, audio and bluetooth
+  #
   hardware.video.hidpi.enable = true;
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
@@ -107,33 +119,13 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
-
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
   security.polkit.enable = true;
   services.dbus.enable = true;
   services.gnome.gnome-keyring.enable = true;
 
-  # polkit-gnome-authentication-agent-1
-
-  # systemd = {
-  #     user.services.polkit-gnome-authentication-agent-1 = {
-  #     description = "polkit-gnome-authentication-agent-1";
-  #     wants = [ "graphical-session.target" ];
-  #     wantedBy = [ "graphical-session.target" ];
-  #     after = [ "graphical-session.target" ];
-  #     serviceConfig = {
-  #       Type = "simple";
-  #       ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-  #       Restart = "on-failure";
-  #       RestartSec = 1;
-  #       TimeoutStopSec = 10;
-  #     };
-  #   };
-  # };
-
+  #
+  # font and input
+  #
   i18n.inputMethod = {
     enabled = "fcitx5";
     fcitx5.enableRimeData = true;
@@ -160,7 +152,9 @@
     proggyfonts
   ];
 
-
+  #
+  # shell, pkgs and env
+  #
   users.defaultUserShell = pkgs.zsh;
   programs.light.enable = true;
 
