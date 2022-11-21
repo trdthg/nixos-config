@@ -54,7 +54,7 @@
       "trdthg-lg".psk = "12345678";
     };
   };
-  # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  # networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   # Set your time zone.
   time.timeZone = "Asia/Shanghai";
