@@ -14,6 +14,8 @@
         up = "k";
         down = "j";
 
+        defaultWorkspace = "workspace number 1";
+
         menu = '' wofi --show drun --lines=5 --prompt="" '';
 
         output = {
@@ -274,11 +276,11 @@
           { command = "dbus-sway-environment"; }
           { command = "configure-gtk"; }
           {
-            command = ''
-              swayidle -w
-              timeout 300 'swaylock -f -c 000000'
-              timeout 600 'swaymsg " output * dpms off "'
-              resume 'swaymsg " output * dpms on "'
+            command = '' \
+              swayidle -w \
+              timeout 300 'swaylock -f -c 000000' \
+              timeout 600 'swaymsg " output * dpms off "' \
+              resume 'swaymsg " output * dpms on "' \
               before-sleep 'swaylock -f -c 000000'
             '';
           }

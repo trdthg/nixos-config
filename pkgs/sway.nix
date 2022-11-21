@@ -60,37 +60,39 @@ in
     enable = true;
     wlr.enable = true;
     # gtk portal needed to make gtk apps happy
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-wlr
+    ];
     # gtkUsePortal = true;
   };
 
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
-    # environment.systemPackages = with pkgs; [
+  #programs.sway = {
+  # enable = true;
+  #wrapperFeatures.gtk = true;
+  #extraPackages = with pkgs; [
+  environment.systemPackages = with pkgs; [
+    # vscodium-fhs
+    alacritty
+    wofi
+    bemenu
+    grim
+    slurp # screenshot functionality
+    waybar
+    swaylock
+    swayidle
+    mako
 
-    extraPackages = with pkgs; [
-      # vscodium-fhs
-      alacritty
-      wofi
-      bemenu
-      grim
-      slurp # screenshot functionality
-      waybar
-      swaylock
-      swayidle
-      mako
 
+    xdg-utils
 
-      xdg-utils
-
-      dbus-sway-environment
-      configure-gtk
-      wayland
-      glib # gsettings
-      dracula-theme # gtk theme
-      gnome3.adwaita-icon-theme # default gnome cursors
-      wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
-    ];
-  };
+    dbus-sway-environment
+    configure-gtk
+    wayland
+    glib # gsettings
+    dracula-theme # gtk theme
+    gnome3.adwaita-icon-theme # default gnome cursors
+    wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
+  ];
+  # };
 }

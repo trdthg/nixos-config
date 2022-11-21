@@ -83,6 +83,10 @@
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+  };
 
   hardware.video.hidpi.enable = true;
   hardware.bluetooth.enable = true;
