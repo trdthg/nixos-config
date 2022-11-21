@@ -1,11 +1,6 @@
 { config, pkgs, lib, ... }:
 
 {
-  home.packages = [
-    pkgs.htop
-    # pkgs.fortune
-  ];
-
   wayland.windowManager.sway = {
     enable = true;
     wrapperFeatures.gtk = true;

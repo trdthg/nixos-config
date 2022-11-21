@@ -37,11 +37,6 @@
 
   nixpkgs.config = {
     allowUnfree = true;
-    # packageOverrides = pkgs: {
-    #   nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-    #    inherit pkgs;
-    #   };
-    # };
   };
 
   networking.hostName = "nixos"; # Define your hostname.
@@ -181,13 +176,12 @@
   # add a shell to /etc/shells
   environment.shells = with pkgs; [ zsh ];
 
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.trdthg = {
     isNormalUser = true;
     home = "/home/trdthg";
     password = "1789";
-    extraGroups = [ "wheel" "video" "audio" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "video" "audio" "docker" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       nixpkgs-fmt
       clang
