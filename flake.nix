@@ -14,18 +14,33 @@
 
     # nur
     nur.url = "github:nix-community/NUR";
+
+    # trdthg-nur
+    trdthgNur = {
+      url = "github:trdthg/trdthg-nur-packages";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   # 输出配置，即 NixOS 系统配置
-  outputs = { self, nixpkgs, home-manager, nur, ... }: {
+  outputs = { self, nixpkgs, home-manager, nur, trdthgNur, ... }: {
     # 定义一个名为 nixos 的系统
     nixosConfigurations."nixos" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        # ./modules
+        # 自己的 nur
+        ({
+          nixpkgs.overlays = [
+            (final: prev: {
+              trdthgNur = trdthgNur.packages."${prev.system}";
+            })
+          ];
+        })
 
+        # configuration.nix
         ./profiles/trdthg/configuration.nix
 
+        # home-manager
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
@@ -36,6 +51,7 @@
           # arguments to home.nix
         }
 
+        # nur
         nur.nixosModules.nur
         ({ config, ... }: {
           environment.systemPackages = [
