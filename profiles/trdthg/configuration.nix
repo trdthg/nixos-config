@@ -90,6 +90,7 @@
   hardware.opengl = {
     enable = true;
     driSupport = true;
+    driSupport32Bit = true;
   };
   # Fix swaylock can't unlock
   # Allow swaylock to unlock the computer for us
@@ -188,6 +189,7 @@
       firefox
       google-chrome
       tdesktop
+      steam
 
       neofetch
       wdisplays
