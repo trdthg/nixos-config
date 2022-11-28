@@ -47,6 +47,7 @@
       "408".psk = "504504504";
       "TP-LINK_7A1F".psk = "4602yyds";
       "trdthg-lg".psk = "12345678";
+      "Xiaomi_B7A8".psk = "hk123456";
     };
   };
   # networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
@@ -90,6 +91,7 @@
   hardware.opengl = {
     enable = true;
     driSupport = true;
+    # steam client need this
     driSupport32Bit = true;
   };
   # Fix swaylock can't unlock
@@ -151,6 +153,9 @@
     mplus-outline-fonts.githubRelease
     dina-font
     proggyfonts
+
+    # for steam chinese font
+    wqy_zenhei
   ];
 
   #
@@ -185,11 +190,15 @@
       nixpkgs-fmt
       clang
       gcc
+      gnumake
 
       firefox
       google-chrome
       tdesktop
+
+      # steam and gamepad
       steam
+      xboxdrv
 
       neofetch
       wdisplays

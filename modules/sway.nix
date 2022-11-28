@@ -59,10 +59,10 @@
           "XF86AudioMute" = '' exec 'pactl set-sink-mute @DEFAULT_SINK@ toggle' '';
           ## fn+F2    c:122   XF86AudioLowerVolume
           # "XF86AudioLowerVolume" = ''exec ${pamixer} --allow-boost --unmute --decrease 2 && ${mywob} $(${pamixer} --get-volume)'';
-          "XF86AudioLowerVolume" = '' exec 'pactl set-sink-volume @DEFAULT_SINK@ -1%' '';
+          "XF86AudioLowerVolume" = '' exec 'pactl set-sink-volume @DEFAULT_SINK@ -10%' '';
           ## fn+F3    c:123   XF86AudioRaiseVolume
           # "XF86AudioRaiseVolume" = ''exec ${pamixer} --allow-boost --unmute --increase 2 && ${mywob} $(${pamixer} --get-volume)'';
-          "XF86AudioRaiseVolume" = '' exec 'pactl set-sink-volume @DEFAULT_SINK@ +1%' '';
+          "XF86AudioRaiseVolume" = '' exec 'pactl set-sink-volume @DEFAULT_SINK@ +10%' '';
           ## fn+F4    c:198   XF86AudioMicMute
           # "XF86AudioMicMute" = ''exec ${pamixer} --default-source --toggle-mute && ( ${pamixer} --default-source --get-mute && ${mywob} 0 ) || ${mywob} $(${pamixer} --default-source --get-volume)'';
           ## fn+F5    c:232   XF86MonBrightnessDown
