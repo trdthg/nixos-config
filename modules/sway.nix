@@ -269,7 +269,8 @@
 
         startup = [
           { command = "cfw"; }
-          { command = "fcitx5"; }
+          # { command = "fcitx5"; }
+          { command = "wlpinyin"; }
           { command = "blueman-manager"; }
           { command = "systemctl --user import-environment"; }
           { command = "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK"; }
