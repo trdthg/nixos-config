@@ -12,5 +12,6 @@
     ./zsh.nix
     ./vscode.nix
     ./sway.nix
+    ./waybar.nix
   ];
 }

@@ -268,7 +268,7 @@
         ];
 
         startup = [
-          { command = "cfw"; }
+          { command = "NIXOS_OZONE_WL=1 cfw"; }
           # { command = "fcitx5"; }
           { command = "wlpinyin"; }
           { command = "blueman-manager"; }
@@ -279,8 +279,8 @@
           {
             command = '' \
               swayidle -w \
-              timeout 300 'swaylock -f -c 000000' \
-              timeout 600 'swaymsg " output * dpms off "' \
+              timeout 600 'swaylock -f -c 000000' \
+              timeout 1200 'swaymsg " output * dpms off "' \
               resume 'swaymsg " output * dpms on "' \
               before-sleep 'swaylock -f -c 000000'
             '';

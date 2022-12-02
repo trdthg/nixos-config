@@ -2,6 +2,7 @@
 {
   imports = [
     ./python.nix
+    ./java.nix
     ./docker.nix
     ./sway.nix
     ./tmp.nix

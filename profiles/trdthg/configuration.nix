@@ -147,12 +147,8 @@
     noto-fonts-cjk
     noto-fonts-emoji
     font-awesome
-    liberation_ttf
-    fira-code
-    fira-code-symbols
-    mplus-outline-fonts.githubRelease
-    dina-font
-    proggyfonts
+    # nerdfonts
+    # (nerdfonts.override { fonts = [ "DroidSansMono" ]; })
 
     # for steam chinese font
     wqy_zenhei
@@ -180,12 +176,12 @@
   # add a shell to /etc/shells
   environment.shells = with pkgs; [ zsh ];
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # Define a user account. Don't forget to set a password with 'passwd'.
   users.users.trdthg = {
     isNormalUser = true;
     home = "/home/trdthg";
     password = "1789";
-    extraGroups = [ "wheel" "video" "audio" "docker" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "video" "audio" "docker" ]; # Enable 'sudo' for the user.
     packages = with pkgs; [
       nixpkgs-fmt
       clang
