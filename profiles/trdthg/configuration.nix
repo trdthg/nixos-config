@@ -50,6 +50,10 @@
       "Xiaomi_B7A8".psk = "hk123456";
     };
   };
+  networking.extraHosts =
+    ''
+      # 127.0.0.1 55e19a41e9ef
+    '';
   # networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   # Set your time zone.
@@ -142,33 +146,33 @@
     # ];
   };
 
-  fonts.fonts = with pkgs; [
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-    font-awesome
-    # nerdfonts
-    # (nerdfonts.override { fonts = [ "DroidSansMono" ]; })
+  fonts = {
+    enableDefaultFonts = true;
+    fontconfig = {
+      defaultFonts = {
+        serif = [ "Noto Sans CJK SC" ];
+        sansSerif = [ "Noto Sans CJK SC" ];
+        monospace = [ "JetBrainsMono NerdFont" "Noto Sans Mono CJK SC" ];
+      };
+    };
+    fonts = with pkgs; [
+      font-awesome
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
+      nerdfonts
+      # (nerdfonts.override { fonts = [ "DroidSansMono" ]; })
 
-    # for steam chinese font
-    wqy_zenhei
-  ];
+      # for steam chinese font
+      wqy_zenhei
+    ];
+  };
 
   #
   # shell, pkgs and env
   #
   users.defaultUserShell = pkgs.zsh;
   programs.light.enable = true;
-
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    pulseaudioFull
-  ];
-
 
   programs.zsh.enable = true;
   # users.defaultUserShell = pkgs.zsh;
@@ -191,6 +195,9 @@
       firefox
       google-chrome
       tdesktop
+      code-server
+      tokei
+      p7zip
 
       # steam and gamepad
       steam
@@ -217,7 +224,7 @@
   services.openssh.enable = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ 7890 ];
+  networking.firewall.allowedTCPPorts = [ 7890 ];
   # networking.firewall.allowedUDPPorts = [ 7890 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
@@ -236,6 +243,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "22.05"; # Did you read the comment?
+  system.stateVersion = "22.11"; # Did you read the comment?
 
 }

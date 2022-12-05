@@ -6,13 +6,15 @@
 
       * {
           /* `otf-font-awesome` is required to be installed for icons */
-          font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-          font-size: 13px;
+          font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif Source Code Pro;
+          font-size: 12px;
+          border: none;
+          border-radius: 0;
       }
 
       window#waybar {
-          background-color: rgba(43, 48, 59, 0.5);
-          border-bottom: 3px solid rgba(100, 114, 125, 0.5);
+          background-color: black;
+          border-bottom: 0px solid rgba(10, 114, 125, 0.5);
           color: #ffffff;
           transition-property: background-color;
           transition-duration: .5s;
@@ -45,13 +47,16 @@
           box-shadow: inset 0 -3px transparent;
           /* Avoid rounded borders under each button name */
           border: none;
-          border-radius: 0;
+          border-radius: 7;
+          margin: 3;
+          margin-left: 3;
+          margin-right: 3;
+          opacity: 1;
       }
 
       /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
       button:hover {
           background: inherit;
-          box-shadow: inset 0 -3px #ffffff;
       }
 
       #workspaces button {
@@ -61,12 +66,13 @@
       }
 
       #workspaces button:hover {
-          background: rgba(0, 0, 0, 0.2);
+          background: #dddddd;
+          color: #000000;
       }
 
       #workspaces button.focused {
-          background-color: #64727D;
-          box-shadow: inset 0 -3px #ffffff;
+          background-color: #ffffff;
+          color: #000000;
       }
 
       #workspaces button.urgent {
@@ -75,7 +81,7 @@
 
       #mode {
           background-color: #64727D;
-          border-bottom: 3px solid #ffffff;
+          border-bottom: 0px solid #ffffff;
       }
 
       #clock,
@@ -94,7 +100,7 @@
       #idle_inhibitor,
       #scratchpad,
       #mpd {
-          padding: 0 10px;
+          padding: 0 8px;
           color: #ffffff;
       }
 
@@ -217,7 +223,7 @@
       }
 
       #tray {
-          background-color: #2980b9;
+          background-color: black;
       }
 
       #tray > .passive {
@@ -287,18 +293,6 @@
       	background-color: transparent;
       }
 
-      * {
-        border: none;
-        border-radius: 0;
-        font-family: Source Code Pro;
-      }
-      window#waybar {
-        background: #16191C;
-        color: #AAB2BF;
-      }
-      #workspaces button {
-        padding: 0 2px;
-      }
     '';
     settings = {
       mainBar = {
@@ -314,12 +308,16 @@
         # ];
 
         modules-left = [
-          "sway/workspaces"
+          "cpu"
+          "memory"
+          "temperature"
+          "idle_inhibitor"
           # "sway/mode"
           # "custom/media"
           # "keyboard-state"
         ];
         modules-center = [
+          "sway/workspaces"
           # "sway/window"
           # "wlr/taskbar"
           # "sway/scratchpad"
@@ -327,14 +325,10 @@
         ];
         modules-right = [
           # "custom/mymodule#with-css-id"
-          "mpd"
-          "keyboard-state"
-          "idle_inhibitor"
+          # "mpd"
+          # "keyboard-state"
           "pulseaudio"
           "network"
-          "cpu"
-          "memory"
-          "temperature"
           "backlight"
           "battery"
           "battery#bat2"
@@ -386,24 +380,25 @@
           "format-alt" = "{:%Y-%m-%d}";
         };
         "cpu" = {
-          "format" = "{usage}% ";
+          "format" = " {usage}%";
           "tooltip" = false;
-          "format-alt" = "{usage}% ";
+          "format-alt" = " {usage}%";
         };
         "memory" = {
-          "format" = "{}% ";
-          "format-alt" = "{}% ";
+          "format" = " {}% ";
+          "format-alt" = " {}% ";
         };
         "temperature" = {
           "critical-threshold" = 60;
           "hwmon-path" = "/sys/class/hwmon/hwmon2/temp1_input";
-          "format" = "{temperatureC}°C {icon}";
+          "format" = "{icon} {temperatureC}°C";
+          "format-alt" = "{icon} {temperatureC}°C";
           "format-icons" = [ "" "" "" ];
         };
         "backlight" = {
-          "format" = "{percent}% {icon}";
+          "format" = "{icon} {percent}%";
           "format-icons" = [ "" "" "" "" "" "" "" "" "" ];
-          "format-alt" = "{percent}% {icon}";
+          "format-alt" = "{icon} {percent}%";
         };
         "battery" = {
           "states" = {
@@ -411,30 +406,30 @@
             "warning" = 30;
             "critical" = 15;
           };
-          "format" = "{capacity}% {icon}";
-          "format-charging" = "{capacity}% ";
-          "format-plugged" = "{capacity}% ";
-          "format-alt" = "{time} {icon}";
+          "format" = "{icon} {capacity}%";
+          "format-charging" = " {capacity}%";
+          "format-plugged" = " {capacity}% ";
+          "format-alt" = "{icon} {time}";
           "format-icons" = [ "" "" "" "" "" ];
         };
         "battery#bat2" = {
           "bat" = "BAT2";
         };
         "network" = {
-          "format-wifi" = "{essid} ({signalStrength}%) ";
-          "format-ethernet" = "{ipaddr}/{cidr} ";
-          "tooltip-format" = "{ifname} via {gwaddr} ";
-          "format-linked" = "{ifname} (No IP) ";
-          "format-disconnected" = "Disconnected ⚠";
-          "format-alt" = "{ifname}: {ipaddr}/{cidr}";
+          "format-wifi" = "  {essid} ({signalStrength}%)";
+          "format-ethernet" = " {ipaddr}/{cidr}";
+          "tooltip-format" = " {ifname} via {gwaddr}";
+          "format-linked" = " {ifname} (No IP)";
+          "format-disconnected" = "⚠ Disconnected";
+          "format-alt" = "  {ifname}: {ipaddr}/{cidr}";
         };
 
         "pulseaudio" = {
-          "format" = "{volume}% {icon} {format_source}";
-          "format-bluetooth" = "{volume}% {icon} {format_source}";
+          "format" = "{icon} {volume}% {format_source}";
+          "format-bluetooth" = "{icon} {volume}%  {format_source}";
           "format-bluetooth-muted" = " {icon} {format_source}";
           "format-muted" = " {format_source}";
-          "format-source" = "{volume}% ";
+          "format-source" = " {volume}%";
           "format-source-muted" = "";
           "format-icons" = {
             "headphone" = "";

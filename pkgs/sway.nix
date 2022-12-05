@@ -54,6 +54,20 @@ in
 
     # set gtk protal
     GTK_USE_PORTAL = "1";
+    USE_GTK_PORTAL = "1";
+  };
+
+
+  xdg.mime.defaultApplications = {
+    "application/pdf" = "firefox.desktop";
+    "image/png" = [
+      "swayimg"
+      # "sxiv.desktop"
+      # "gimp.desktop"
+    ];
+    "image/jpg" = [
+      "swayimg"
+    ];
   };
 
   xdg.portal = {
@@ -64,7 +78,6 @@ in
       pkgs.xdg-desktop-portal-gtk
       pkgs.xdg-desktop-portal-wlr
     ];
-    # gtkUsePortal = true;
   };
 
   #programs.sway = {
