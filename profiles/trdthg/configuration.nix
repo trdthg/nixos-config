@@ -17,6 +17,31 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Make some extra kernel modules available to NixOS
+  boot.extraModulePackages = with config.boot.kernelPackages;
+    [ v4l2loopback.out ];
+
+  # Activate kernel modules (choose from built-ins and extra ones)
+  boot.kernelModules = [
+    "amdgpu"
+    # Virtual Camera
+    "v4l2loopback"
+    # Virtual Microphone, built-in
+    # "snd-aloop"
+
+    # "kvm-intel"
+    "hid-nintendo"
+  ];
+
+  # Set initial kernel module settings
+  boot.extraModprobeConfig = ''
+    # exclusive_caps: Skype, Zoom, Teams etc. will only show device when actually streaming
+    # card_label: Name of virtual camera, how it'll show up in Skype, Zoom, Teams
+    # https://github.com/umlaeute/v4l2loopback
+    options v4l2loopback exclusive_caps=21 card_label="Virtual Camera"
+  '';
+
+
   nix = {
     package = pkgs.nixUnstable;
     settings = {
@@ -150,8 +175,8 @@
     enableDefaultFonts = true;
     fontconfig = {
       defaultFonts = {
-        serif = [ "Noto Sans CJK SC" ];
-        sansSerif = [ "Noto Sans CJK SC" ];
+        serif = [ "Noto Sans CJK SC" "WenQuanYi Zen Hei" ];
+        sansSerif = [ "Noto Sans CJK SC" "WenQuanYi Zen Hei" ];
         monospace = [ "JetBrainsMono NerdFont" "Noto Sans Mono CJK SC" ];
       };
     };
@@ -191,6 +216,7 @@
       clang
       gcc
       gnumake
+      cmake
 
       firefox
       google-chrome
@@ -199,6 +225,7 @@
       tokei
       p7zip
 
+      yuzu-ea
       # steam and gamepad
       steam
       xboxdrv
@@ -208,6 +235,19 @@
       wlr-randr
       # thunderbird
     ];
+  };
+
+  environment.sessionVariables = {
+    EDITOR = "vim";
+
+    # Set the default browser to Firefox.
+    # BROWSER = "firefox";
+    # BROWSER = "chromium";
+    BROWSER = "google-chrome";
+
+    # set gtk protal
+    GTK_USE_PORTAL = "1";
+    USE_GTK_PORTAL = "1";
   };
 
   # Some programs need SUID wrappers, can be configured further or are

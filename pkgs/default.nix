@@ -15,6 +15,13 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     unzip
+    lsof
+
+    ffmpeg
+    v4l-utils
+
+    appimage-run
+
     pulseaudioFull
 
     texlive.combined.scheme-full

@@ -44,19 +44,6 @@ let
 
 in
 {
-  environment.sessionVariables = {
-    EDITOR = "vim";
-
-    # Set the default browser to Firefox.
-    # BROWSER = "firefox";
-    # BROWSER = "chromium";
-    BROWSER = "google-chrome";
-
-    # set gtk protal
-    GTK_USE_PORTAL = "1";
-    USE_GTK_PORTAL = "1";
-  };
-
 
   xdg.mime.defaultApplications = {
     "application/pdf" = "firefox.desktop";
