@@ -64,22 +64,28 @@
     allowUnfree = true;
   };
 
-  networking.hostName = "nixos"; # Define your hostname.
-  # Pick only one of the below networking options.
-  networking.wireless = {
-    enable = true; # Enables wireless support via wpa_supplicant.
-    networks = {
-      "408".psk = "504504504";
-      "TP-LINK_7A1F".psk = "4602yyds";
-      "trdthg-lg".psk = "12345678";
-      "Xiaomi_B7A8".psk = "hk123456";
+  networking = {
+    # Define your hostname.
+    hostName = "nixos";
+
+    # networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
+    # Pick only one of the below networking options.
+    wireless = {
+      enable = true; # Enables wireless support via wpa_supplicant.
+      networks = {
+        "trdthg-lg".psk = "12345678";
+        "408".psk = "504504504";
+        "TP-LINK_7A1F".psk = "4602yyds";
+        "hy13911345854".psk = "hy13911345854";
+        "Xiaomi_B7A8".psk = "hk123456";
+      };
     };
+    nameservers = [ "1.1.1.1" "8.8.8.8" "8.8.4.4" ];
+    extraHosts =
+      ''
+        # 127.0.0.1 55e19a41e9ef
+      '';
   };
-  networking.extraHosts =
-    ''
-      # 127.0.0.1 55e19a41e9ef
-    '';
-  # networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   # Set your time zone.
   time.timeZone = "Asia/Shanghai";
