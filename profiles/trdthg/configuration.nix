@@ -77,6 +77,9 @@
 
         "408".psk = "504504504";
 
+        "Bonbon_5G".psk = "BonBon20150920";
+        "bonbon".psk = "BonBon816";
+
         "TP-LINK_7A1F".psk = "4602yyds";
 
         "hy13911345854".psk = "hy13911345854";
@@ -108,7 +111,7 @@
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  # services.xserver.enable = true;
 
   # Configure keymap in X11
   # services.xserver.layout = "us";
