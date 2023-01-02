@@ -15,6 +15,9 @@
 
     nodejs-16_x
     yarn
+    nodePackages.pnpm
+    deno
+
   ];
 
   imports = [

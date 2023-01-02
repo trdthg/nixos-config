@@ -18,6 +18,7 @@
         defaultWorkspace = "workspace number 1";
 
         menu = '' wofi --show drun --lines=5 --prompt="" '';
+        # menu = '' subemenu-run '';
 
         output = {
           eDP-1 = {
@@ -30,7 +31,7 @@
           "1267:12600:MSFT0001:00_04F3:3138_Touchpad" = {
             left_handed = "enabled";
             tap = "enabled";
-            natural_scroll = "disabled";
+            natural_scroll = "enabled";
             dwt = "enabled";
             accel_profile = "flat"; # disable mouse acceleration (enabled by default; to set it manually, use "adaptive" instead of "flat")
             pointer_accel = "0.5"; # set mouse sensitivity (between -1 and 1)
@@ -269,7 +270,7 @@
         ];
 
         startup = [
-          { command = "NIXOS_OZONE_WL=1 cfw"; }
+          { command = "cfw"; }
           # { command = "fcitx5"; }
           { command = "wlpinyin"; }
           { command = "blueman-manager"; }

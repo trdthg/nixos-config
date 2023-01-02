@@ -74,9 +74,13 @@
       enable = true; # Enables wireless support via wpa_supplicant.
       networks = {
         "trdthg-lg".psk = "12345678";
+
         "408".psk = "504504504";
+
         "TP-LINK_7A1F".psk = "4602yyds";
+
         "hy13911345854".psk = "hy13911345854";
+
         "Xiaomi_B7A8".psk = "hk123456";
       };
     };
@@ -104,7 +108,7 @@
   };
 
   # Enable the X11 windowing system.
-  # services.xserver.enable = true;
+  services.xserver.enable = true;
 
   # Configure keymap in X11
   # services.xserver.layout = "us";
@@ -245,6 +249,7 @@
 
   environment.sessionVariables = {
     EDITOR = "vim";
+    NIXOS_OZONE_WL = "1";
 
     # Set the default browser to Firefox.
     # BROWSER = "firefox";

@@ -58,6 +58,7 @@
             # config.nur.repos.linyinfeng.clash-premium
             config.nur.repos.linyinfeng.clash-for-windows
             config.nur.repos.linyinfeng.wemeet
+            # config.nur.repos.xddxdd.dingtalk
           ];
         })
 
