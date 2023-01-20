@@ -1,13 +1,15 @@
-{ config, pkgs, ... }:
+{ config
+, pkgs
+, ...
+}:
+let
+  android = pkgs.callPackage ./android.nix { };
+in
 {
   imports = [
-    ./python.nix
     ./java.nix
     ./docker.nix
-    ./sway.nix
-    ./tmp.nix
   ];
-
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -18,6 +20,9 @@
     unzip
     lsof
 
+    ninja
+    cmake
+
     ffmpeg
     v4l-utils
 
@@ -27,7 +32,8 @@
 
     texlive.combined.scheme-full
 
-    bottom
+    android-tools
+    android.platform-tools
 
     #
     # add ranger file icon support
@@ -35,12 +41,27 @@
     # git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
     # echo "default_linemode devicons" >> $HOME/.config/ranger/rc.conf
     ranger
-
     # kitty can preview images in ranger
     # remember to write `set preview_images_method kitty` in ~/.config/ranger/rc.conf
     kitty
-
     # a img viwer
     swayimg
-  ];
+    bottom
+    pkgs.htop
+
+  ] ++ (import ./sway.nix {
+    config = config;
+    pkgs = pkgs;
+  }).extraPackages
+  ++ (import ./development.nix {
+    config = config;
+    pkgs = pkgs;
+  }).extraPackages;
+
+  environment.variables = {
+    ANDROID_HOME = "${android.androidsdk}/libexec/android-sdk";
+    PATH = "$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools";
+    # JAVA_HOME = pkgs.jdk11;
+    ANDROID_AVD_HOME = "$HOME/.android/avd";
+  };
 }

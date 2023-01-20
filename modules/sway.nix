@@ -1,6 +1,7 @@
 { config, pkgs, lib, ... }:
 
 {
+
   wayland.windowManager.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
@@ -8,8 +9,8 @@
       rec {
         modifier = "Mod4";
         # Use alacritty as default terminal
-        # terminal = "alacritty";
-        terminal = "kitty";
+        terminal = "alacritty";
+        # terminal = "kitty";
         left = "h";
         right = "l";
         up = "k";

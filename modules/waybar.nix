@@ -3,7 +3,6 @@
   programs.waybar = {
     enable = true;
     style = ''
-
       * {
           /* `otf-font-awesome` is required to be installed for icons */
           font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif Source Code Pro;

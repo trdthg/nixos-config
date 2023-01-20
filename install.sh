@@ -7,6 +7,6 @@ case $1 in
   nixos-rebuild test --flake .
   ;;
 "switch")
-  nixos-rebuild switch --flake .
+  nixos-rebuild switch --flake . --upgrade --keep-going --max-jobs 16
   ;;
 esac

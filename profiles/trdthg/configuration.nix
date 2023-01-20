@@ -5,7 +5,6 @@
 { config, pkgs, ... }:
 
 {
-
   imports =
     [
       # Include the results of the hardware scan.
@@ -60,9 +59,16 @@
     '';
   };
 
+  system.autoUpgrade.enable = true;
+  system.autoUpgrade.allowReboot = true;
+
   nixpkgs.config = {
     allowUnfree = true;
+    android_sdk.accept_license = true;
   };
+  nixpkgs.config.permittedInsecurePackages = [
+    "python3.10-poetry-1.2.2"
+  ];
 
   networking = {
     # Define your hostname.
@@ -100,7 +106,7 @@
   # Configure network proxy if necessary
   # networking.proxy.default = "http://192.168.1.105:7890";
   networking.proxy.default = "http://127.0.0.1:7890";
-  networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain,::1";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -215,6 +221,7 @@
   programs.zsh.enable = true;
   # users.defaultUserShell = pkgs.zsh;
   users.users.trdthg.shell = pkgs.zsh;
+  programs.adb.enable = true;
   # add a shell to /etc/shells
   environment.shells = with pkgs; [ zsh ];
 
@@ -223,7 +230,7 @@
     isNormalUser = true;
     home = "/home/trdthg";
     password = "1789";
-    extraGroups = [ "wheel" "video" "audio" "docker" ]; # Enable 'sudo' for the user.
+    extraGroups = [ "wheel" "video" "audio" "docker" "adbusers" ]; # Enable 'sudo' for the user.
     packages = with pkgs; [
       nixpkgs-fmt
       clang
@@ -231,9 +238,12 @@
       gnumake
       cmake
 
+      pkgs.trdthgNur.wlpinyin
+
       firefox
       google-chrome
       tdesktop
+      vscode
       code-server
       tokei
       p7zip
@@ -278,10 +288,10 @@
   services.openssh.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 7890 ];
+  # networking.firewall.allowedTCPPorts = [ 7890 ];
   # networking.firewall.allowedUDPPorts = [ 7890 ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = false;
   #     extraCommands = ''
   # iptables -t nat -A PREROUTING -p tcp --dport 80 -j DNAT --to-destination 172.17.0.1:80
   # iptables -t nat -A POSTROUTING -p tcp -d 172.17.0.1 --dport 80 -j SNAT --to-source 192.168.12.87

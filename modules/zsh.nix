@@ -12,6 +12,12 @@
       # export GDK_DPI_SCALE=0.5
 
       export MOZ_ENABLE_WAYLAND=1
+
+      export PATH="$PATH:$HOME/bin"
+
+      # flutter chrome alias
+      export CHROME_EXECUTABLE="google-chrome-stable";
+
     '';
     shellAliases = {
       ll = "ls -l";

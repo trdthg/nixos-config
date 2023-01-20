@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, ... }:
 
 let
   # bash script to let dbus know about important env variables and
@@ -40,11 +40,31 @@ let
         gsettings set $gnome_schema gtk-theme 'Dracula'
       '';
   };
+  swayPackages = with pkgs; [
+    # vscodium-fhs
+    alacritty
+    wofi
+    bemenu
+    grim
+    slurp # screenshot functionality
+    waybar
+    swaylock
+    swayidle
+    mako
 
 
+    xdg-utils
+
+    dbus-sway-environment
+    configure-gtk
+    wayland
+    glib # gsettings
+    dracula-theme # gtk theme
+    gnome3.adwaita-icon-theme # default gnome cursors
+    wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
+  ];
 in
 {
-
   xdg.mime.defaultApplications = {
     "application/pdf" = "firefox.desktop";
     "image/png" = [
@@ -71,28 +91,8 @@ in
   # enable = true;
   #wrapperFeatures.gtk = true;
   #extraPackages = with pkgs; [
-  environment.systemPackages = with pkgs; [
-    # vscodium-fhs
-    alacritty
-    wofi
-    bemenu
-    grim
-    slurp # screenshot functionality
-    waybar
-    swaylock
-    swayidle
-    mako
-
-
-    xdg-utils
-
-    dbus-sway-environment
-    configure-gtk
-    wayland
-    glib # gsettings
-    dracula-theme # gtk theme
-    gnome3.adwaita-icon-theme # default gnome cursors
-    wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
-  ];
+  # environment.systemPackages = swayPackages;
+  extraPackages = swayPackages;
+  # environment.Packages = extraPackages;
   # };
 }
