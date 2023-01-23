@@ -22,6 +22,8 @@ in
 
     ninja
     cmake
+    just
+    gettext
 
     ffmpeg
     v4l-utils
@@ -50,10 +52,6 @@ in
     pkgs.htop
 
   ] ++ (import ./sway.nix {
-    config = config;
-    pkgs = pkgs;
-  }).extraPackages
-  ++ (import ./development.nix {
     config = config;
     pkgs = pkgs;
   }).extraPackages;

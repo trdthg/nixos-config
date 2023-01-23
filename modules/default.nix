@@ -10,5 +10,6 @@
     ./zsh.nix
     ./sway.nix
     ./waybar.nix
+    ./nvim.nix
   ];
 }

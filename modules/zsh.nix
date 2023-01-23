@@ -13,7 +13,10 @@
 
       export MOZ_ENABLE_WAYLAND=1
 
+
       export PATH="$PATH:$HOME/bin"
+      export PATH="$PATH:$HOME/.cargo/bin"
+      # export PATH="$PATH:$HOME/bin/flutter/github/flutter/bin"
 
       # flutter chrome alias
       export CHROME_EXECUTABLE="google-chrome-stable";

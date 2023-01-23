@@ -237,6 +237,8 @@
       gcc
       gnumake
       cmake
+      pkg-config
+
 
       pkgs.trdthgNur.wlpinyin
 
@@ -257,11 +259,14 @@
       wdisplays
       wlr-randr
       # thunderbird
-    ];
+    ] ++ (import ../../pkgs/development.nix {
+      config = config;
+      pkgs = pkgs;
+    }).extraPackages;
   };
 
   environment.sessionVariables = {
-    EDITOR = "vim";
+    EDITOR = "nvim";
     NIXOS_OZONE_WL = "1";
 
     # Set the default browser to Firefox.
