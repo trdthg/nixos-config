@@ -6,7 +6,6 @@ in
   # development tool
   #
 
-  # pkgs.haskell-language-server.override.supportedGhcVersions = [ "924" ];
   extraPackages = with pkgs; [
     # zlib
     # xz # libzima
@@ -42,17 +41,21 @@ in
 
     haskell.compiler.ghc924
     haskell-language-server
+    (haskell-language-server.override {
+      supportedGhcVersions = [ "924" ];
+    })
+
     # haskell
     # stack
     # haskellPackages.ghcup
     # haskellPackages.hls
 
-    (vscode-with-extensions.override {
-      vscodeExtensions = with vscode-extensions; [
-        ms-vscode.cpptools
-        llvm-vs-code-extensions.vscode-clangd
-      ];
-    })
+    # (vscode-with-extensions.override {
+    #   vscodeExtensions = with vscode-extensions; [
+    #     ms-vscode.cpptools
+    #     llvm-vs-code-extensions.vscode-clangd
+    #   ];
+    # })
   ];
 
 
