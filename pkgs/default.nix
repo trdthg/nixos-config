@@ -11,6 +11,28 @@ in
     ./docker.nix
   ];
 
+  xdg.mime.defaultApplications = {
+    "application/pdf" = "firefox.desktop";
+    "image/png" = [
+      "swayimg"
+      # "sxiv.desktop"
+      # "gimp.desktop"
+    ];
+    "image/jpg" = [
+      "swayimg"
+    ];
+  };
+
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    # gtk portal needed to make gtk apps happy
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-wlr
+    ];
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [

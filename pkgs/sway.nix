@@ -65,28 +65,6 @@ let
   ];
 in
 {
-  xdg.mime.defaultApplications = {
-    "application/pdf" = "firefox.desktop";
-    "image/png" = [
-      "swayimg"
-      # "sxiv.desktop"
-      # "gimp.desktop"
-    ];
-    "image/jpg" = [
-      "swayimg"
-    ];
-  };
-
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    # gtk portal needed to make gtk apps happy
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-wlr
-    ];
-  };
-
   #programs.sway = {
   # enable = true;
   #wrapperFeatures.gtk = true;

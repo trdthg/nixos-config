@@ -4,10 +4,31 @@
     enable = true;
     viAlias = true;
     vimAlias = true;
+
     extraConfig = ''
+      luafile ${./nvim.lua}
       set number relativenumber
     '';
     withPython3 = true;
+
+    coc = {
+      enable = true;
+      settings = {
+        languageserver = {
+          haskell = {
+            command = "haskell-language-server-wrapper";
+            args = [ "--lsp" ];
+            rootPatterns = [
+              "*.cabal"
+              "cabal.project"
+              "hie.yaml"
+            ];
+            filetypes = [ "haskell" "lhaskell" ];
+          };
+        };
+      };
+    };
+
     plugins = with pkgs.vimPlugins; [
       coc-nvim
 
@@ -22,6 +43,10 @@
       coc-highlight
       nvim-tree-lua
       nvim-cmp
+
+      # Language support
+      vim-nix
+      haskell-vim
       # pkgs.vimPlugins.nvim-tree-lua
       # {
       #   plugin = pkgs.vimPlugins.vim-startify;

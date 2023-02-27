@@ -82,6 +82,7 @@
         "trdthg-lg".psk = "12345678";
 
         "408".psk = "504504504";
+        "405".psk = "bigdatab405";
 
         "Bonbon_5G".psk = "BonBon20150920";
         "bonbon".psk = "BonBon816";
@@ -237,8 +238,13 @@
       gcc
       gnumake
       cmake
+      ninja
+      meson
+      gdb
       pkg-config
 
+
+      docker-compose
 
       pkgs.trdthgNur.wlpinyin
 
@@ -249,6 +255,7 @@
       code-server
       tokei
       p7zip
+      zip
 
       yuzu-ea
       # steam and gamepad
