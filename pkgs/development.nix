@@ -12,6 +12,7 @@ in
 
     # go
     go
+    gopls
 
     # rust openssl
     rustup
@@ -31,6 +32,7 @@ in
 
     # python
     python310
+    pyright
     poetry
 
     # java
@@ -40,6 +42,7 @@ in
     jdk17
 
     haskell.compiler.ghc924
+    hlint
     haskell-language-server
     (haskell-language-server.override {
       supportedGhcVersions = [ "924" ];

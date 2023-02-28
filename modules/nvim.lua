@@ -42,10 +42,10 @@ local lsp_flags = {
   -- This is the default in Nvim 0.7+
   debounce_text_changes = 150,
 }
--- require('lspconfig')['pyright'].setup{
---     on_attach = on_attach,
---     flags = lsp_flags,
--- }
+require('lspconfig')['pyright'].setup{
+    on_attach = on_attach,
+    flags = lsp_flags,
+}
 -- require('lspconfig')['tsserver'].setup{
 --     on_attach = on_attach,
 --     flags = lsp_flags,
@@ -58,8 +58,36 @@ local lsp_flags = {
 --       ["rust-analyzer"] = {}
 --     }
 -- }
+-- require'lspconfig'.gopls.setup{
+--     cmd = { "gopls" },
+--     filetypes = { "go", "gomod", "gowork", "gotmpl" },
+--     root_dir = root_pattern("go.mod", ".git"),
+--     single_file_support = true,
+-- }
+-- util = require "lspconfig/util"
+
+
+-- require('lspconfig')['gopls'].setup {
+--   cmd = {"gopls", "serve"},
+--   filetypes = {"go", "gomod"},
+--   root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+--   settings = {
+--     gopls = {
+--       analyses = {
+--         unusedparams = true,
+--       },
+--       staticcheck = true,
+--     },
+--   },
+-- }
 require('lspconfig')['hls'].setup{
+  on_attach = on_attach,
+  flags = lsp_flags,
   filetypes = { 'haskell', 'lhaskell', 'cabal' },
+}
+require('lspconfig')['gopls'].setup{
+  on_attach = on_attach,
+  flags = lsp_flags,
 }
 ------------------------------------------ rust tools ------------------------------------------
 
@@ -143,6 +171,9 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 require('lspconfig')['hls'].setup {
   capabilities = capabilities
 }
+require('lspconfig')['pyright'].setup {
+  capabilities = capabilities
+}
 
 
 local cmp_kinds = {
@@ -187,13 +218,6 @@ cmp.setup({
       side_padding = 0,
     },
   },
-  -- formatting = {
-  --   -- format = lspkind.cmp_format(),
-  --   format = function(_, vim_item)
-  --     vim_item.kind = (cmp_kinds[vim_item.kind] or '') .. vim_item.kind
-  --     return vim_item
-  --   end,
-  -- },
   formatting = {
     fields = { "kind", "abbr", "menu" },
     format = function(entry, vim_item)
@@ -252,3 +276,10 @@ vim.api.nvim_set_keymap('n', '<leader>e', ':NvimTreeToggle<CR>', {noremap = true
 vim.api.nvim_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { noremap = true, silent = true })
 -- 跳转到定义 （ctrl + t 跳转回去）
 vim.api.nvim_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
+--
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*.go',
+  callback = function()
+    vim.lsp.buf.code_action({ context = { only = { 'source.organizeImports' } }, apply = true })
+  end
+})
