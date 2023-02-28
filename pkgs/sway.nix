@@ -42,7 +42,7 @@ let
   };
   swayPackages = with pkgs; [
     # vscodium-fhs
-    alacritty
+    # alacritty
     wofi
     bemenu
     grim

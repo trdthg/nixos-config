@@ -11,5 +11,6 @@
     ./sway.nix
     ./waybar.nix
     ./nvim.nix
+    ./alacritty.nix
   ];
 }

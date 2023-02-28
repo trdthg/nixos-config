@@ -41,18 +41,6 @@
           border: none;
       }
 
-      button {
-          /* Use box-shadow instead of border so the text isn't offset */
-          box-shadow: inset 0 -3px transparent;
-          /* Avoid rounded borders under each button name */
-          border: none;
-          border-radius: 7;
-          margin: 3;
-          margin-left: 3;
-          margin-right: 3;
-          opacity: 1;
-      }
-
       /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
       button:hover {
           background: inherit;
@@ -83,6 +71,7 @@
           border-bottom: 0px solid #ffffff;
       }
 
+      #workspaces button,
       #clock,
       #battery,
       #cpu,
@@ -100,7 +89,20 @@
       #scratchpad,
       #mpd {
           padding: 0 8px;
+          border-radius: 7;
+
           color: #ffffff;
+
+          /* Use box-shadow instead of border so the text isn't offset */
+          box-shadow: inset 0 -3px transparent;
+          /* Avoid rounded borders under each button name */
+          padding: 0 5px;
+          border: none;
+          border-radius: 7;
+          margin: 3;
+          margin-left: 3;
+          margin-right: 3;
+          opacity: 1;
       }
 
       #window,
@@ -309,6 +311,7 @@
         modules-left = [
           "cpu"
           "memory"
+          "disk"
           "temperature"
           "idle_inhibitor"
           # "sway/mode"
@@ -387,12 +390,18 @@
           "format" = " {}% ";
           "format-alt" = " {}% ";
         };
+        "disk" = {
+          "interval" = 30;
+          "format" = "💾 {percentage_free} %";
+          "format-alt" = "💾 {used} / {free}";
+          "path" = "/";
+        };
         "temperature" = {
           "critical-threshold" = 60;
           "hwmon-path" = "/sys/class/hwmon/hwmon2/temp1_input";
           "format" = "{icon} {temperatureC}°C";
           "format-alt" = "{icon} {temperatureC}°C";
-          "format-icons" = [ "" "" "" ];
+          "format-icons" = [ "" ];
         };
         "backlight" = {
           "format" = "{icon} {percent}%";

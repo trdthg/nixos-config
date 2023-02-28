@@ -236,3 +236,19 @@ require("nvim-tree").setup({
     dotfiles = true,
   },
 })
+
+vim.g.nvim_tree_indent_markers = 1
+vim.g.nvim_tree_highlight_opened_files = 1
+-- require('nvim-tree').setup {
+  -- auto_close = true,
+  -- view = {auto_resize = true}
+-- }
+
+
+------------------------------------------ Nvim Key bind ------------------------------------------
+-- Toogle 文件目录树 leader -> \
+vim.api.nvim_set_keymap('n', '<leader>e', ':NvimTreeToggle<CR>', {noremap = true, silent = true})
+-- 跳转到声明
+vim.api.nvim_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { noremap = true, silent = true })
+-- 跳转到定义 （ctrl + t 跳转回去）
+vim.api.nvim_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
