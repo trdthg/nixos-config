@@ -1,5 +1,8 @@
 test:
-  sudo nixos-rebuild test --flake . --upgrade --keep-going --max-jobs 16
+  sudo nixos-rebuild test --upgrade-all --flake . --max-jobs 16 --keep-going
 
 switch:
-  sudo nixos-rebuild switch --flake . --upgrade --keep-going --max-jobs 16
+  sudo nixos-rebuild switch --upgrade-all --flake . --max-jobs 16 --keep-going
+
+update:
+  sudo nix flake update

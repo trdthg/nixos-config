@@ -2,9 +2,9 @@
 , pkgs
 , ...
 }:
-let
-  android = pkgs.callPackage ./android.nix { };
-in
+# let
+#   android = pkgs.callPackage ./android.nix { };
+# in
 {
   imports = [
     ./java.nix
@@ -56,8 +56,9 @@ in
 
     texlive.combined.scheme-full
 
-    android-tools
-    android.platform-tools
+    # Android
+    # android-tools
+    # android.platform-tools
 
     #
     # add ranger file icon support
@@ -79,9 +80,9 @@ in
   }).extraPackages;
 
   environment.variables = {
-    ANDROID_HOME = "${android.androidsdk}/libexec/android-sdk";
-    PATH = "$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools";
+    # ANDROID_HOME = "${android.androidsdk}/libexec/android-sdk";
+    # PATH = "$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools";
+    # ANDROID_AVD_HOME = "$HOME/.android/avd";
     # JAVA_HOME = pkgs.jdk11;
-    ANDROID_AVD_HOME = "$HOME/.android/avd";
   };
 }

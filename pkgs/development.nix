@@ -10,15 +10,21 @@ in
     # zlib
     # xz # libzima
 
+    gcc
+    gdb
+    clang
+    clang-tools
+
     # go
     go
     gopls
 
     # rust openssl
     rustup
-    openssl
-    expat
-    fontconfig
+    rust-analyzer
+    # openssl
+    # expat
+    # fontconfig
 
     # desktop
     # flutter

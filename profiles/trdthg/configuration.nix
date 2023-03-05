@@ -81,6 +81,7 @@
       networks = {
         "trdthg-lg".psk = "12345678";
 
+        "408GreatWall".psk = "408408408";
         "408".psk = "504504504";
         "405".psk = "bigdatab405";
 
@@ -178,25 +179,25 @@
   #
   # font and input
   #
-  i18n.inputMethod = {
-    enabled = "fcitx5";
-    fcitx5.enableRimeData = true;
-    fcitx5.addons = with pkgs; [
-      fcitx5-rime
-      fcitx5-chinese-addons
-    ];
-    # enabled = "ibus";
-    # ibus.engines = with pkgs.ibus-engines; [
-    #   libpinyin
-    # ];
-  };
+  # i18n.inputMethod = {
+  #   enabled = "fcitx5";
+  #   fcitx5.enableRimeData = true;
+  #   fcitx5.addons = with pkgs; [
+  #     fcitx5-rime
+  #     fcitx5-chinese-addons
+  #   ];
+  #   # enabled = "ibus";
+  #   # ibus.engines = with pkgs.ibus-engines; [
+  #   #   libpinyin
+  #   # ];
+  # };
 
   fonts = {
     enableDefaultFonts = true;
     fontconfig = {
       defaultFonts = {
-        serif = [ "Noto Sans CJK SC" "WenQuanYi Zen Hei" ];
-        sansSerif = [ "Noto Sans CJK SC" "WenQuanYi Zen Hei" ];
+        serif = [ "noto-fonts" "noto-fonts-emoji" "Noto Sans CJK SC" "WenQuanYi Zen Hei" ];
+        sansSerif = [ "noto-fonts" "noto-fonts-emoji" "Noto Sans CJK SC" "WenQuanYi Zen Hei" ];
         monospace = [ "JetBrainsMono NerdFont" "Noto Sans Mono CJK SC" ];
       };
     };
@@ -234,15 +235,14 @@
     extraGroups = [ "wheel" "video" "audio" "docker" "adbusers" ]; # Enable 'sudo' for the user.
     packages = with pkgs; [
       nixpkgs-fmt
-      clang
-      gcc
       gnumake
       cmake
       ninja
       meson
-      gdb
       pkg-config
 
+      #
+      alsa-oss
 
       docker-compose
 
@@ -257,14 +257,14 @@
       p7zip
       zip
 
-      yuzu-ea
+      # yuzu-ea
       # steam and gamepad
       steam
       xboxdrv
 
       neofetch
-      wdisplays
-      wlr-randr
+      # wdisplays
+      # wlr-randr
       # thunderbird
     ] ++ (import ../../pkgs/development.nix {
       config = config;

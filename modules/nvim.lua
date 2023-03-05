@@ -89,20 +89,10 @@ require('lspconfig')['gopls'].setup{
   on_attach = on_attach,
   flags = lsp_flags,
 }
------------------------------------------- rust tools ------------------------------------------
-
--- local rt = require("rust-tools")
-
--- rt.setup({
---   server = {
---     on_attach = function(_, bufnr)
---       -- Hover actions
---       vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
---       -- Code action groups
---       vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
---     end,
---   },
--- })
+require('lspconfig')['clangd'].setup{
+  on_attach = on_attach,
+  flags = flags,
+}
 ------------------------------------------ Nvim autocomplete ------------------------------------------
 local cmp = require'cmp'
 
@@ -172,6 +162,9 @@ require('lspconfig')['hls'].setup {
   capabilities = capabilities
 }
 require('lspconfig')['pyright'].setup {
+  capabilities = capabilities
+}
+require'lspconfig'.clangd.setup{
   capabilities = capabilities
 }
 
@@ -282,4 +275,20 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   callback = function()
     vim.lsp.buf.code_action({ context = { only = { 'source.organizeImports' } }, apply = true })
   end
+})
+
+
+------------------------------------------ rust tools ------------------------------------------
+
+local rt = require("rust-tools")
+
+rt.setup({
+  server = {
+    on_attach = function(_, bufnr)
+      -- Hover actions
+      vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+      -- Code action groups
+      vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+    end,
+  },
 })
