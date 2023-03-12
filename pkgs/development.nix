@@ -1,5 +1,10 @@
 { config, pkgs, ... }:
 let
+  my-python-packages = p: with p; [
+    requests
+
+    # other python packages
+  ];
 in
 {
   #
@@ -34,6 +39,7 @@ in
     nodejs-16_x
     yarn
     nodePackages.pnpm
+    nodePackages.typescript
     deno
 
     # python

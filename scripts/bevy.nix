@@ -10,27 +10,35 @@ let
   # unstable = import <nixos-unstable> { };
 in
 pkgs.mkShell {
-
-  # build
   nativeBuildInputs = with pkgs; [
-    pkg-config
-    ninja
-    meson
-    cmake
-    wayland
-    wayland-utils
-    wayland-scanner
-    wayland-protocols
-
-    libxkbcommon
-    tree
-  ] ++ [ unstable.librime ];
-
-  # runtime
-  buildInputs = with pkgs;[
+    pkgconfig
+    # clang
+    # lld # To use lld linker
   ];
-
-  export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:${pkgs.alsa.dev}/lib";
+  buildInputs = with pkgs;[
+    # cargo
+    # rustc
+    # rustfmt
+    # pre-commit
+    # rustPackages.clippy
+    alsa-lib
+    udev
+    #NOTE Add more deps
+    vulkan-loader
+    xorg.libX11
+    # x11
+    xorg.libXrandr
+    xorg.libXcursor
+    xorg.libXi
+  ];
   shellHook = ''
-  '';
+    export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:${
+      pkgs.lib.makeLibraryPath  [
+        pkgs.udev
+        pkgs.alsaLib
+        pkgs.vulkan-loader
+      ]
+    }"'';
+  # RUST_SRC_PATH = rustPlatform.rustLibSrc;
+
 }

@@ -38,6 +38,11 @@
     # card_label: Name of virtual camera, how it'll show up in Skype, Zoom, Teams
     # https://github.com/umlaeute/v4l2loopback
     options v4l2loopback exclusive_caps=21 card_label="Virtual Camera"
+
+    # KVM libvirtd
+    options kvm_intel nested=1
+    options kvm_intel emulate_invalid_guest_state=0
+    options kvm ignore_msrs=1
   '';
 
 
@@ -74,15 +79,31 @@
     # Define your hostname.
     hostName = "nixos";
 
-    # networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
+
+    firewall = {
+      # Or disable the firewall altogether.
+      enable = false;
+      # Open ports in the firewall.
+      allowedTCPPorts = [ 7890 ];
+      allowedUDPPorts = [ 7890 ];
+    };
+    #     extraCommands = ''
+    # iptables -t nat -A PREROUTING -p tcp --dport 80 -j DNAT --to-destination 172.17.0.1:80
+    # iptables -t nat -A POSTROUTING -p tcp -d 172.17.0.1 --dport 80 -j SNAT --to-source 192.168.12.87
+
+
     # Pick only one of the below networking options.
+    networkmanager = {
+      enable = true; # Easiest to use and most distros use this by default.
+    };
+
     wireless = {
-      enable = true; # Enables wireless support via wpa_supplicant.
+      enable = false; # Enables wireless support via wpa_supplicant.
       networks = {
         "trdthg-lg".psk = "12345678";
 
-        "408GreatWall".psk = "408408408";
-        "408".psk = "504504504";
+        # "408GreatWall".psk = "408408408";
+        # "408".psk = "504504504";
         "405".psk = "bigdatab405";
 
         "Bonbon_5G".psk = "BonBon20150920";
@@ -232,7 +253,7 @@
     isNormalUser = true;
     home = "/home/trdthg";
     password = "1789";
-    extraGroups = [ "wheel" "video" "audio" "docker" "adbusers" ]; # Enable 'sudo' for the user.
+    extraGroups = [ "wheel" "video" "audio" "docker" "adbusers" "libvirtd" ]; # Enable 'sudo' for the user.
     packages = with pkgs; [
       nixpkgs-fmt
       gnumake
@@ -240,13 +261,14 @@
       ninja
       meson
       pkg-config
+      jq
 
       #
       alsa-oss
 
       docker-compose
 
-      pkgs.trdthgNur.wlpinyin
+      # pkgs.trdthgNur.wlpinyin
 
       firefox
       google-chrome
@@ -298,15 +320,6 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ 7890 ];
-  # networking.firewall.allowedUDPPorts = [ 7890 ];
-  # Or disable the firewall altogether.
-  networking.firewall.enable = false;
-  #     extraCommands = ''
-  # iptables -t nat -A PREROUTING -p tcp --dport 80 -j DNAT --to-destination 172.17.0.1:80
-  # iptables -t nat -A POSTROUTING -p tcp -d 172.17.0.1 --dport 80 -j SNAT --to-source 192.168.12.87
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
