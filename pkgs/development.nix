@@ -2,7 +2,7 @@
 let
   my-python-packages = p: with p; [
     requests
-
+    flake8
     # other python packages
   ];
 in
@@ -52,13 +52,6 @@ in
     # this doesn't automatically add JAVA_HOME to the environment
     # latest jdk for vscode java lsp, jdk17 on write,
     jdk17
-
-    haskell.compiler.ghc924
-    hlint
-    haskell-language-server
-    (haskell-language-server.override {
-      supportedGhcVersions = [ "924" ];
-    })
 
     # haskell
     # stack

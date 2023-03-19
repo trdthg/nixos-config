@@ -45,6 +45,12 @@
     options kvm ignore_msrs=1
   '';
 
+  # For mount.cifs, required unless domain name resolution is not needed.
+  # fileSystems."/mnt/Share" = {
+  #   device = "//192.168.1.100";
+  #   fsType = "cifs";
+  #   options = [ "x-systemd.automount" "noauto" ];
+  # };
 
   nix = {
     package = pkgs.nixUnstable;
@@ -255,6 +261,8 @@
     password = "1789";
     extraGroups = [ "wheel" "video" "audio" "docker" "adbusers" "libvirtd" ]; # Enable 'sudo' for the user.
     packages = with pkgs; [
+      cifs-utils
+
       nixpkgs-fmt
       gnumake
       cmake
@@ -275,10 +283,12 @@
       tdesktop
       vscode
       code-server
-      tokei
+
       p7zip
       zip
 
+      tokei
+      zellij
       # yuzu-ea
       # steam and gamepad
       steam

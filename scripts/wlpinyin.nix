@@ -30,7 +30,7 @@ pkgs.mkShell {
   buildInputs = with pkgs;[
   ];
 
-  export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:${pkgs.alsa.dev}/lib";
+  # export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:${pkgs.alsa.dev}/lib";
   shellHook = ''
   '';
 }
