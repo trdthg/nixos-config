@@ -276,13 +276,14 @@
 
       docker-compose
 
-      # pkgs.trdthgNur.wlpinyin
+      pkgs.trdthgNur.wlpinyin
 
       firefox
       google-chrome
       tdesktop
       vscode
       code-server
+      frp
 
       p7zip
       zip

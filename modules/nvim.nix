@@ -69,6 +69,10 @@
       toggleterm-nvim
 
       rust-tools-nvim
+
+      nvim-treesitter
+      nvim-autopairs
+      indent-blankline-nvim
       # vimExtraPlugins.github-nvim-theme
       # config.nur.repos.m15a.vimExtraPlugins.github-nvim-theme
       # rust-tools

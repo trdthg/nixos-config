@@ -93,6 +93,19 @@ require('lspconfig')['clangd'].setup{
   on_attach = on_attach,
   flags = flags,
 }
+------------------------------------------ rust tools ------------------------------------------
+local rt = require("rust-tools")
+
+rt.setup({
+  server = {
+    on_attach = function(_, bufnr)
+      -- Hover actions
+      vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+      -- Code action groups
+      vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+    end,
+  },
+})
 ------------------------------------------ Nvim autocomplete ------------------------------------------
 local cmp = require'cmp'
 
@@ -223,6 +236,45 @@ cmp.setup({
     end,
   },
 })
+
+---
+
+require'nvim-treesitter.configs'.setup {
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "gnn", -- set to `false` to disable one of the mappings
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
+    },
+  },
+}
+
+------------------------------------------ auto pairs -----------------------------------------
+require('nvim-autopairs').setup({
+  disable_filetype = { "TelescopePrompt" , "vim" },
+})
+-- If you want insert `(` after select function or method item
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+local cmp = require('cmp')
+cmp.event:on(
+  'confirm_done',
+  cmp_autopairs.on_confirm_done()
+)
+
+------------------------------------------ indent -----------------------------------------
+
+-- require("indent_blankline").setup {
+--   -- for example, context is off by default, use this to turn it on
+--   show_current_context = true,
+--   show_current_context_start = true,
+-- }
+require'nvim-treesitter.configs'.setup {
+  -- indent = {
+  --   enable = true
+  -- }
+}
 ------------------------------------------ Nvim Tree ------------------------------------------
 
 -- disable netrw at the very start of your init.lua (strongly advised)
@@ -275,20 +327,4 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   callback = function()
     vim.lsp.buf.code_action({ context = { only = { 'source.organizeImports' } }, apply = true })
   end
-})
-
-
------------------------------------------- rust tools ------------------------------------------
-
-local rt = require("rust-tools")
-
-rt.setup({
-  server = {
-    on_attach = function(_, bufnr)
-      -- Hover actions
-      vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
-      -- Code action groups
-      vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
-    end,
-  },
 })
