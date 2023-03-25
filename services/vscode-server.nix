@@ -14,7 +14,8 @@ in
         Type = "simple";
       };
       serviceConfig = {
-        ExecStart = "${pkgs.code-server}/bin/code-server --user-data-dir /home/trdthg/.vscode --bind-addr localhost:50002";
+        User = "trdthg";
+        ExecStart = "${pkgs.code-server}/bin/code-server --config /home/trdthg/nixos-config/config/private/code-server.yaml --user-data-dir /home/trdthg/.vscode --bind-addr localhost:50002";
       };
       wantedBy = [ "multi-user.target" ];
     };
