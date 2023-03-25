@@ -271,8 +271,6 @@
         ];
 
         startup = [
-          { command = "cfw"; }
-          # { command = "fcitx5"; }
           { command = "wlpinyin"; }
           { command = "blueman-manager"; }
           { command = "systemctl --user import-environment"; }

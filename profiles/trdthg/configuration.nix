@@ -10,6 +10,7 @@
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../pkgs/default.nix
+      ../../services/default.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -282,6 +283,8 @@
       google-chrome
       tdesktop
       vscode
+
+      clash
       code-server
       frp
 
@@ -331,6 +334,12 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  services.openssh.settings.PasswordAuthentication = false;
+
+  # Custom services
+  services.frpc.enable = true;
+  services.vscode-server.enable = true;
+  services.clash.enable = true;
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you

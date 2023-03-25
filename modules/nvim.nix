@@ -7,6 +7,7 @@
 
     extraConfig = ''
       luafile ${./nvim.lua}
+      let g:polyglot_disabled = ['autoindent']
       set number relativenumber
       " show existing tab with 4 spaces width
       set tabstop=4
