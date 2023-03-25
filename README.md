@@ -12,3 +12,5 @@
 - systemd config
   - doc: <https://nixos.wiki/wiki/Extend_NixOS>
   - notice: per-user
+
+- lib-close behavior(logind, system-logind.service)

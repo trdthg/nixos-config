@@ -336,6 +336,7 @@
   services.openssh.enable = true;
   services.openssh.settings.PasswordAuthentication = false;
 
+  services.logind.lidSwitch = "ignore";
   # Custom services
   services.frpc.enable = true;
   services.vscode-server.enable = true;
