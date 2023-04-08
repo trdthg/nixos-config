@@ -8,7 +8,7 @@ update:
   sudo nix flake update
 
 delete-old-generations:
-	nix-env -p /nix/var/nix/profiles/system --delete-generations 1
+	sudo nix-env -p /nix/var/nix/profiles/system --delete-generations 1
 list-generations:
 	sudo nix-env -p /nix/var/nix/profiles/system --list-generations
 clean-garbage:

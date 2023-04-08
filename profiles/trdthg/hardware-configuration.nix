@@ -9,10 +9,39 @@
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
+  # Use the systemd-boot EFI boot loader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ ];
+  boot.initrd.kernelModules = [ "amdgpu" ];
+  # Activate kernel modules (choose from built-ins and extra ones)
+  boot.kernelModules = [
+    "kvm-amd"
+    # Virtual Camera
+    "v4l2loopback"
+    # Virtual Microphone, built-in
+    # "snd-aloop"
+
+    # "kvm-intel"
+    "hid-nintendo"
+  ];
+  # Make some extra kernel modules available to NixOS
+  boot.extraModulePackages = with config.boot.kernelPackages;
+    [ v4l2loopback.out ];
+
+  # Set initial kernel module settings
+  boot.extraModprobeConfig = ''
+    # exclusive_caps: Skype, Zoom, Teams etc. will only show device when actually streaming
+    # card_label: Name of virtual camera, how it'll show up in Skype, Zoom, Teams
+    # https://github.com/umlaeute/v4l2loopback
+    options v4l2loopback exclusive_caps=21 card_label="Virtual Camera"
+
+    # KVM libvirtd
+    options kvm_intel nested=1
+    options kvm_intel emulate_invalid_guest_state=0
+    options kvm ignore_msrs=1
+  '';
 
   fileSystems."/" =
     {
@@ -37,6 +66,4 @@
   # networking.interfaces.wlp1s0.useDHCP = lib.mkDefault true;
 
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  # high-resolution display
-  hardware.video.hidpi.enable = lib.mkDefault true;
 }
