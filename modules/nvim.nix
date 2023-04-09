@@ -7,7 +7,10 @@
 
     extraConfig = ''
       luafile ${./nvim.lua}
+
+      " 缩进
       let g:polyglot_disabled = ['autoindent']
+
       set number relativenumber
       " show existing tab with 4 spaces width
       set tabstop=4
@@ -16,7 +19,15 @@
       " On pressing tab, insert 4 spaces
       set expandtab
 
+      " 颜色，图标... 主题
       colorscheme codedark
+
+      " 空白字符高亮
+      hi TrailSpace ctermbg=blue ctermfg=red guibg=red
+      match TrailSpace /\s\+$/
+      set list
+      set listchars=tab:>\ ,trail:-,nbsp:+
+      "set listchars=tab:>\ ,trail:-,nbsp:+,eol:$
     '';
     withPython3 = true;
 

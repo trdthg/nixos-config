@@ -15,6 +15,11 @@ in
     # zlib
     # xz # libzima
 
+    # bash
+    nodePackages.bash-language-server
+    shellcheck
+
+    # c
     gcc
     gdb
     clang
