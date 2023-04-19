@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports =
@@ -138,7 +138,12 @@
     driSupport = true;
     # steam client need this
     driSupport32Bit = true;
+    # extraPackages = with pkgs; [
+    #   libGL
+    # ];
+    # setLdLibraryPath = true;
   };
+
   # Fix swaylock can't unlock
   # Allow swaylock to unlock the computer for us
   security.pam.services.swaylock = {
@@ -230,6 +235,11 @@
     packages = with pkgs; [
       cifs-utils
 
+      glib
+      glibc
+      # for nix-ld lldb
+      zlib
+
       nixpkgs-fmt
       gnumake
       cmake
@@ -274,6 +284,20 @@
       pkgs = pkgs;
     }).extraPackages;
   };
+
+  # programs.nix-ld.enable = true;
+  environment.variables = {
+    NIX_LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
+      pkgs.stdenv.cc.cc
+    ];
+    NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
+    LD_LIBRARY_PATH = ''$LD_LIBRARY_PATH:${
+      pkgs.lib.makeLibraryPath  [
+        pkgs.zlib
+      ]
+    }'';
+  };
+
 
   environment.sessionVariables = {
     EDITOR = "nvim";

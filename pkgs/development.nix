@@ -15,6 +15,9 @@ in
     # zlib
     # xz # libzima
 
+    # nix
+    rnix-lsp
+
     # bash
     nodePackages.bash-language-server
     shellcheck
@@ -24,6 +27,7 @@ in
     gdb
     clang
     clang-tools
+    lldb
 
     # go
     go
@@ -31,6 +35,7 @@ in
 
     # rust openssl
     rustup
+    
     rust-analyzer
     # openssl
     # expat
