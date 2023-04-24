@@ -193,13 +193,8 @@
 
   fonts = {
     enableDefaultFonts = true;
-    fontconfig = {
-      defaultFonts = {
-        serif = [ "noto-fonts" "noto-fonts-emoji" "Noto Sans CJK SC" "WenQuanYi Zen Hei" ];
-        sansSerif = [ "noto-fonts" "noto-fonts-emoji" "Noto Sans CJK SC" "WenQuanYi Zen Hei" ];
-        monospace = [ "JetBrainsMono NerdFont" "Noto Sans Mono CJK SC" ];
-      };
-    };
+    fontDir.enable = true;
+    fontconfig.enable = true;
     fonts = with pkgs; [
       font-awesome
       noto-fonts
@@ -211,6 +206,13 @@
       # for steam chinese font
       wqy_zenhei
     ];
+    # fontconfig = {
+    #   defaultFonts = {
+    #     serif = [ "noto-fonts" "noto-fonts-emoji" "Noto Sans CJK SC" "WenQuanYi Zen Hei" ];
+    #     sansSerif = [ "noto-fonts" "noto-fonts-emoji" "Noto Sans CJK SC" "WenQuanYi Zen Hei" ];
+    #     monospace = [ "JetBrainsMono NerdFont" "Noto Sans Mono CJK SC" ];
+    #   };
+    # };
   };
 
   #
