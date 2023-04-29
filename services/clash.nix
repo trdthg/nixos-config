@@ -15,7 +15,7 @@ in
       };
       serviceConfig = {
         User = "trdthg";
-        ExecStart = "${pkgs.clash}/bin/clash -f /home/trdthg/.config/clash/profiles/1679711267419.yml";
+        ExecStart = "${pkgs.clash}/bin/clash -f /home/trdthg/.config/clash/profiles/release.yml";
       };
       wantedBy = [ "multi-user.target" ];
     };
