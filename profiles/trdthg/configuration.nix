@@ -294,8 +294,11 @@
     ];
     NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
     LD_LIBRARY_PATH = ''$LD_LIBRARY_PATH:${
-      pkgs.lib.makeLibraryPath  [
+      pkgs.lib.makeLibraryPath [
+        pkgs.stdenv.cc.cc.lib
         pkgs.zlib
+        # pkgs.glib
+        # pkgs.glibc
       ]
     }'';
   };
