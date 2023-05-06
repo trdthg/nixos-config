@@ -236,7 +236,7 @@
     extraGroups = [ "wheel" "video" "audio" "docker" "adbusers" "libvirtd" ]; # Enable 'sudo' for the user.
     packages = with pkgs; [
       cifs-utils
-
+      simple-http-server
       glib
       glibc
       # for nix-ld lldb
@@ -297,8 +297,8 @@
       pkgs.lib.makeLibraryPath [
         pkgs.stdenv.cc.cc.lib
         pkgs.zlib
-        # pkgs.glib
-        # pkgs.glibc
+        pkgs.glib
+        pkgs.glibc
       ]
     }'';
   };
@@ -312,6 +312,8 @@
     # BROWSER = "firefox";
     # BROWSER = "chromium";
     BROWSER = "google-chrome";
+    # for default apps, plrease refer to  ~/.config/mimeapps.list
+    DEFAULT_BROWSER = "google-chrome";
 
     # set gtk protal
     GTK_USE_PORTAL = "1";
@@ -349,6 +351,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "22.11"; # Did you read the comment?
+  system.stateVersion = "unstable"; # Did you read the comment?
 
 }

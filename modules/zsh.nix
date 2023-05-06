@@ -50,7 +50,7 @@
     oh-my-zsh = {
       enable = true;
       plugins = [ "git" "python" "man" ];
-      theme = "mira";
+      theme = "ys";
     };
   };
 }
