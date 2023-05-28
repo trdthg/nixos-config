@@ -47,14 +47,14 @@
     just
     gettext
 
-    ffmpeg
-    v4l-utils
+    # ffmpeg
+    # v4l-utils
 
     appimage-run
 
     pulseaudioFull
 
-    texlive.combined.scheme-full
+    # texlive.combined.scheme-full
 
     # Android
     # android-tools
@@ -65,7 +65,7 @@
     #
     # git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
     # echo "default_linemode devicons" >> $HOME/.config/ranger/rc.conf
-    ranger
+    # ranger
     # kitty can preview images in ranger
     # remember to write `set preview_images_method kitty` in ~/.config/ranger/rc.conf
     kitty

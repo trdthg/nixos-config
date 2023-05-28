@@ -2,7 +2,7 @@
 let
   my-python-packages = p: with p; [
     requests
-    flake8
+    # flake8
     # other python packages
   ];
 in
@@ -32,10 +32,13 @@ in
     # go
     go
     gopls
+    grpcurl
+    protobuf
+    protoc-gen-go-grpc
 
     # rust openssl
     rustup
-    
+
     rust-analyzer
     # openssl
     # expat
@@ -54,11 +57,11 @@ in
 
     # python
     python310
-    pyright
-    poetry
+    # pyright
+    # poetry
 
     # java
-    maven
+    # maven
     # this doesn't automatically add JAVA_HOME to the environment
     # latest jdk for vscode java lsp, jdk17 on write,
     jdk17
