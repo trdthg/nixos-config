@@ -39,7 +39,7 @@ in
     # rust openssl
     rustup
 
-    rust-analyzer
+    # rust-analyzer
     # openssl
     # expat
     # fontconfig
@@ -53,7 +53,7 @@ in
     yarn
     nodePackages.pnpm
     nodePackages.typescript
-    deno
+    # deno
 
     # python
     python310
@@ -64,7 +64,7 @@ in
     # maven
     # this doesn't automatically add JAVA_HOME to the environment
     # latest jdk for vscode java lsp, jdk17 on write,
-    jdk17
+    # jdk17
 
     # haskell
     # stack
