@@ -286,10 +286,10 @@
 
   # programs.nix-ld.enable = true;
   environment.variables = {
-    NIX_LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
-      pkgs.stdenv.cc.cc
-    ];
-    NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
+    # NIX_LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
+    #   pkgs.stdenv.cc.cc
+    # ];
+    # NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
     LD_LIBRARY_PATH = ''$LD_LIBRARY_PATH:${
       pkgs.lib.makeLibraryPath [
     #     pkgs.stdenv.cc.cc.lib

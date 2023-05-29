@@ -75,7 +75,7 @@
             ];
           })
 
-          nix-ld.nixosModules.nix-ld
+          # nix-ld.nixosModules.nix-ld
         ];
       };
 
