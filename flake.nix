@@ -69,13 +69,13 @@
           ({ config, ... }: {
             environment.systemPackages = [
               # config.nur.repos.linyinfeng.clash-premium
-              config.nur.repos.linyinfeng.clash-for-windows
+              # config.nur.repos.linyinfeng.clash-for-windows
               # config.nur.repos.linyinfeng.wemeet
               # config.nur.repos.xddxdd.dingtalk
             ];
           })
 
-          nix-ld.nixosModules.nix-ld
+          # nix-ld.nixosModules.nix-ld
         ];
       };
 

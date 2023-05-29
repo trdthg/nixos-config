@@ -1,8 +1,8 @@
 test:
-  sudo nixos-rebuild test --upgrade-all --flake . --impure --max-jobs 16 --keep-going
+  sudo NIXPKGS_ALLOW_INSECURE=1 nixos-rebuild test --upgrade-all --flake . --impure --max-jobs 16 --keep-going
 
 switch:
-  sudo nixos-rebuild switch --upgrade-all --flake . --impure --max-jobs 16 --keep-going
+  sudo NIXPKGS_ALLOW_INSECURE=1 nixos-rebuild switch --upgrade-all --flake . --impure --max-jobs 16 --keep-going
 
 update:
   sudo nix flake update

@@ -45,18 +45,14 @@
     allowUnfree = true;
     android_sdk.accept_license = true;
   };
-  nixpkgs.config.permittedInsecurePackages = [
-    "python3.10-poetry-1.2.2"
-  ];
 
   networking = {
     # Define your hostname.
     hostName = "nixos";
 
-
     firewall = {
       # Or disable the firewall altogether.
-      enable = false;
+      enable = true;
       # Open ports in the firewall.
       allowedTCPPorts = [ 7890 ];
       allowedUDPPorts = [ 7890 ];
@@ -289,16 +285,16 @@
 
   # programs.nix-ld.enable = true;
   environment.variables = {
-    NIX_LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
-      pkgs.stdenv.cc.cc
-    ];
-    NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
+    # NIX_LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
+    #   pkgs.stdenv.cc.cc
+    # ];
+    # NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
     LD_LIBRARY_PATH = ''$LD_LIBRARY_PATH:${
       pkgs.lib.makeLibraryPath [
-        pkgs.stdenv.cc.cc.lib
+    #     pkgs.stdenv.cc.cc.lib
         pkgs.zlib
-        pkgs.glib
-        pkgs.glibc
+    #     pkgs.glib
+    #     pkgs.glibc
       ]
     }'';
   };
