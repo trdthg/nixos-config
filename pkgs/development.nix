@@ -38,6 +38,8 @@ in
 
     # rust openssl
     rustup
+    zig
+    zls
 
     # rust-analyzer
     # openssl
@@ -57,6 +59,7 @@ in
 
     # python
     python310
+    # rye
     # pyright
     # poetry
 
