@@ -52,10 +52,16 @@
 
     firewall = {
       # Or disable the firewall altogether.
-      enable = true;
+      enable = false;
       # Open ports in the firewall.
-      allowedTCPPorts = [ 7890 ];
-      allowedUDPPorts = [ 7890 ];
+      allowedTCPPorts = [ 80 443 7500 7890 29080 ];
+      allowedTCPPortRanges = [
+        { from = 50000; to = 51000; }
+        { from = 8000; to = 8010; }
+      ];
+      allowedUDPPortRanges = [
+        # { from = 8000; to = 8010; }
+      ];
     };
     #     extraCommands = ''
     # iptables -t nat -A PREROUTING -p tcp --dport 80 -j DNAT --to-destination 172.17.0.1:80
@@ -237,6 +243,11 @@
       glibc
       # for nix-ld lldb
       zlib
+      # for rust and libcrypto
+      # openssl
+      # openssl_1_1
+      # libxcrypt
+      # libxcrypt-legacy
 
       nixpkgs-fmt
       gnumake
@@ -268,6 +279,7 @@
 
       tokei
       zellij
+      autocorrect
       # yuzu-ea
       # steam and gamepad
       steam
@@ -293,6 +305,9 @@
       pkgs.lib.makeLibraryPath [
     #     pkgs.stdenv.cc.cc.lib
         pkgs.zlib
+        # pkgs.openssl
+        # pkgs.libxcrypt
+        # pkgs.libxcrypt-legacy
     #     pkgs.glib
     #     pkgs.glibc
       ]
