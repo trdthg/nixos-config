@@ -54,7 +54,7 @@
       # Or disable the firewall altogether.
       enable = false;
       # Open ports in the firewall.
-      allowedTCPPorts = [ 80 443 7500 7890 29080 ];
+      allowedTCPPorts = [ 80 443 7500 7890 ];
       allowedTCPPortRanges = [
         { from = 50000; to = 51000; }
         { from = 8000; to = 8010; }
@@ -244,7 +244,7 @@
       # for nix-ld lldb
       zlib
       # for rust and libcrypto
-      # openssl
+      openssl
       # openssl_1_1
       # libxcrypt
       # libxcrypt-legacy
@@ -297,10 +297,11 @@
 
   # programs.nix-ld.enable = true;
   environment.variables = {
-    # NIX_LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
-    #   pkgs.stdenv.cc.cc
-    # ];
-    # NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
+    NIX_LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
+      pkgs.stdenv.cc.cc
+      # pkgs.openssl
+    ];
+    NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
     LD_LIBRARY_PATH = ''$LD_LIBRARY_PATH:${
       pkgs.lib.makeLibraryPath [
     #     pkgs.stdenv.cc.cc.lib
