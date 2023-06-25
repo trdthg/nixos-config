@@ -280,7 +280,10 @@
       zip
 
       tokei
-      zellij
+      # zellij
+      tmux
+      ripgrep
+      bat
       autocorrect
       # yuzu-ea
       # steam and gamepad
