@@ -1,6 +1,31 @@
 -- examples for your init.lua
 
 ------------------------------------------ basic ------------------------------------------
+-- nvim set timout to 3000
+-- vim.cmd('set timeoutlen=3000')
+require("auto-save").setup {}
+
+-- local function leave_insert_mode()
+--   vim.cmd("stopinsert")
+-- end
+
+-- -- timer
+-- vim.g.leave_insert_mode_timer = nil
+
+-- -- AutoLeaveInsert 一定时间无操作后自动退出插入模式
+-- --
+-- -- 1. autocmd should be triggered when enter insert mode and text changed
+-- -- 2. after triggered, check timer exists
+-- --    if timer exists, restart it
+-- --    if timer not exists, create it
+-- -- 3. after timer timeout, leave insert mode
+-- vim.cmd([[
+--   augroup AutoLeaveInsert
+--     autocmd!
+--     autocmd InsertEnter * if !exists('g:leave_insert_mode_timer') | let g:leave_insert_mode_timer = timer_start(3000, function(leave_insert_mode)) | endif
+--     autocmd TextChanged * if exists('g:leave_insert_mode_timer') | call timer_start(3000, function(leave_insert_mode)) | endif
+--   augroup END
+-- ]])
 
 ------------------------------------------ nvim-lspconfig ------------------------------------------
 
@@ -294,11 +319,11 @@ require("nvim-tree").setup({
   sort_by = "case_sensitive",
   view = {
     width = 30,
-    mappings = {
-      list = {
-        { key = "u", action = "dir_up" },
-      },
-    },
+    -- mappings = {
+    --   list = {
+    --     { key = "u", action = "dir_up" },
+    --   },
+    -- },
   },
   renderer = {
     group_empty = true,

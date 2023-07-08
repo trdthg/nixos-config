@@ -14,3 +14,9 @@
   - notice: per-user
 
 - lib-close behavior(logind, system-logind.service)
+
+## joy
+
+- wise cow
+  1. `nix-shell -p cowsay fortune lolcat`
+  2. `fortune | cowthink -f tux | lolcat`

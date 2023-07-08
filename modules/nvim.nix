@@ -82,9 +82,15 @@
 
       rust-tools-nvim
 
+      # 语法树解析器
       nvim-treesitter
+      # 自动括号
       nvim-autopairs
+      # 自动缩进
       indent-blankline-nvim
+      # 自动保存
+      auto-save-nvim
+
       # vimExtraPlugins.github-nvim-theme
       # config.nur.repos.m15a.vimExtraPlugins.github-nvim-theme
       # rust-tools
