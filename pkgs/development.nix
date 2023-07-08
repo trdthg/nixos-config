@@ -38,8 +38,13 @@ in
 
     # rust openssl
     rustup
+
+    # zig
     zig
     zls
+
+    # perl
+    perl536Packages.PLS
 
     # rust-analyzer
     # openssl
