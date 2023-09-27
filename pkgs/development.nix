@@ -56,7 +56,7 @@ in
     # dart
 
     # js/ts
-    nodejs-16_x
+    nodejs_20
     yarn
     nodePackages.pnpm
     nodePackages.typescript

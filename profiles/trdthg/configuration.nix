@@ -104,7 +104,7 @@
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://192.168.1.105:7890";
-  networking.proxy.default = "http://127.0.0.1:7890";
+  networking.proxy.default = "http://127.0.0.1:17890";
   networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain,::1";
 
   # Select internationalisation properties.
@@ -174,7 +174,10 @@
     pulse.enable = true;
   };
   security.polkit.enable = true;
+
   services.dbus.enable = true;
+  # 
+  programs.dconf.enable = true;
   services.gnome.gnome-keyring.enable = true;
 
   services.gvfs.enable = true;
@@ -196,10 +199,10 @@
   # };
 
   fonts = {
-    enableDefaultFonts = true;
+    enableDefaultPackages = true;
     fontDir.enable = true;
     fontconfig.enable = true;
-    fonts = with pkgs; [
+    packages = with pkgs; [
       font-awesome
       noto-fonts
       noto-fonts-cjk
@@ -254,8 +257,8 @@
       nixpkgs-fmt
       gnumake
       cmake
-      ninja
-      meson
+      # ninja
+      # meson
       pkg-config
       jq
       steam-run
@@ -310,7 +313,7 @@
     NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
     LD_LIBRARY_PATH = ''$LD_LIBRARY_PATH:${
       pkgs.lib.makeLibraryPath [
-    #     pkgs.stdenv.cc.cc.lib
+        # pkgs.stdenv.cc.cc.lib
         pkgs.zlib
         # pkgs.openssl
         # pkgs.libxcrypt
