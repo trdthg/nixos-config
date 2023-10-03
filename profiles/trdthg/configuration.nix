@@ -246,6 +246,7 @@
       simple-http-server
       glib
       glibc
+      libclang
       # for nix-ld lldb
       zlib
       # for rust and libcrypto
@@ -322,6 +323,7 @@
     #     pkgs.glibc
       ]
     }'';
+    LIBCLANG_PATH = "${pkgs.libclang.lib}/lib";
   };
 
 
