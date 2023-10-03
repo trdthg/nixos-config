@@ -244,8 +244,8 @@
     packages = with pkgs; [
       cifs-utils
       simple-http-server
-      glib
-      glibc
+      # glib
+      # glibc
       libclang
       # for nix-ld lldb
       zlib
@@ -314,13 +314,13 @@
     # NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
     LD_LIBRARY_PATH = ''$LD_LIBRARY_PATH:${
       pkgs.lib.makeLibraryPath [
-        # pkgs.stdenv.cc.cc.lib
+        # pkgs.stdenv.cc.cc
         pkgs.zlib
         # pkgs.openssl
         # pkgs.libxcrypt
         # pkgs.libxcrypt-legacy
-    #     pkgs.glib
-    #     pkgs.glibc
+        # pkgs.glib
+        # pkgs.glibc
       ]
     }'';
     LIBCLANG_PATH = "${pkgs.libclang.lib}/lib";
