@@ -12,5 +12,6 @@
     ./waybar.nix
     ./nvim.nix
     ./alacritty.nix
+    ./vscode.nix
   ];
 }
