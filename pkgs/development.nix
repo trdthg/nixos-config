@@ -35,6 +35,7 @@ in
     grpcurl
     protobuf
     protoc-gen-go-grpc
+    delve
 
     # rust openssl
     rustup
