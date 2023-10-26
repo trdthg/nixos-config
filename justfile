@@ -1,3 +1,11 @@
+# 	I can confirm nix-store --repair-path on the path above did work around the issue for me (until next gc?); I didn't need to downgrade to nix_2_17, at least while the path is available.
+
+# @qbit
+# qbit last month
+# I can confirm nix-store --repair-path on the path above did work around the issue for me (until next gc?); I didn't need to downgrade to nix_2_17, at least while the path is available.
+
+# Re the path, are you sure the next one isn't a different bash output? At first I thought it didn't work because there was -info and -man variations.
+
 test:
   sudo NIXPKGS_ALLOW_INSECURE=1 nixos-rebuild test --upgrade-all --flake . --impure --max-jobs 16 --keep-going
 
