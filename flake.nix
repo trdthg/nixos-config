@@ -1,10 +1,29 @@
 {
   description = "Trdthg's NixOS Flake";
 
+  nixConfig = {
+    experimental-features = [ "nix-command" "flakes" ];
+    substituters = [
+      "https://cache.nixos.org/"
+      # replace official cache with a mirror located in China
+      "https://mirrors.ustc.edu.cn/nix-channels/store"
+    ];
+
+    # nix community's cache server
+    extra-substituters = [
+      "https://nix-community.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    ];
+  };
+
   # 输入配置，即软件源
   inputs = {
     # Nixpkgs，即 NixOS 官方软件源
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # nixpkgs.url = "github:NixOS/nixpkgs/xxxx";
 
     # home manager
     home-manager = {
@@ -31,15 +50,27 @@
   outputs =
     { self
     , nixpkgs
+    , nixpkgs-unstable
     , home-manager
     , nur
     , trdthgNur
     , nix-ld
     , ...
-    }: {
+    }:
+    let
+      system = "x86_64-linux";
+      pkgs = import nixpkgs { inherit system; };
+      unstable = import nixpkgs-unstable
+        {
+          inherit system;
+        };
+    in
+    {
       # 定义一个名为 nixos 的系统
       nixosConfigurations."nixos" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        # inherit system;
+        specialArgs = { inherit unstable; };
         modules = [
           # 自己的 nur
           ({
@@ -59,7 +90,9 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.trdthg = import ./profiles/trdthg/home.nix;
-
+            home-manager.extraSpecialArgs = {
+              inherit unstable;
+            };
             # Optionally, use home-manager.extraSpecialArgs to pass
             # arguments to home.nix
           }

@@ -59,6 +59,7 @@ in
     # js/ts
     nodejs_20
     yarn
+    bun
     nodePackages.pnpm
     nodePackages.typescript
     # deno

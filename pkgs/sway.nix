@@ -52,7 +52,6 @@ let
     swayidle
     mako
 
-
     xdg-utils
 
     dbus-sway-environment

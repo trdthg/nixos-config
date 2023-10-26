@@ -25,7 +25,9 @@
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
       auto-optimise-store = true;
+      trusted-users = [ "trdthg" ];
     };
+    # pkgs.nixVersions.nix_2_17;
     gc = {
       automatic = true;
       dates = "weekly";
@@ -44,6 +46,9 @@
   nixpkgs.config = {
     allowUnfree = true;
     android_sdk.accept_license = true;
+    permittedInsecurePackages = [
+      "nodejs-16.20.2"
+    ];
   };
 
   networking = {
@@ -324,6 +329,7 @@
       ]
     }'';
     LIBCLANG_PATH = "${pkgs.libclang.lib}/lib";
+    NIXPKGS_ALLOW_INSECURE = "1";
   };
 
 
