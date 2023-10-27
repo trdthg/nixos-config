@@ -69,6 +69,8 @@
     # kitty can preview images in ranger
     # remember to write `set preview_images_method kitty` in ~/.config/ranger/rc.conf
     kitty
+    yazi
+
     # a img viwer
     swayimg
     bottom
