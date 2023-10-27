@@ -291,17 +291,18 @@ cmp.event:on(
 )
 
 ------------------------------------------ indent -----------------------------------------
+-- broken since 2023-10-28
+-- require("indent_blankline").setup({
+--   -- for example, context is off by default, use this to turn it on
+--   show_current_context = false,
+--   show_current_context_start = true,
+-- })
 
-require("indent_blankline").setup {
-  -- for example, context is off by default, use this to turn it on
-  show_current_context = false,
-  show_current_context_start = true,
-}
-require'nvim-treesitter.configs'.setup {
+require'nvim-treesitter.configs'.setup({
   indent = {
     enable = true
   }
-}
+})
 ------------------------------------------ Nvim Tree ------------------------------------------
 
 -- disable netrw at the very start of your init.lua (strongly advised)
