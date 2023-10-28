@@ -302,8 +302,7 @@
       # steam and gamepad
       steam
       xboxdrv
-
-      neofetch
+      obs-studio
       # wdisplays
       # wlr-randr
       # thunderbird
