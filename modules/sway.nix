@@ -5,6 +5,9 @@
   wayland.windowManager.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
+    extraConfig = ''
+      default_border pixel 2
+    '';
     config =
       rec {
         modifier = "Mod4";
@@ -289,5 +292,7 @@
           }
         ];
       };
+    # hide titlebar
+
   };
 }
