@@ -55,6 +55,12 @@
     # Define your hostname.
     hostName = "nixos";
 
+    interfaces = {
+      wlp1s0.ipv4.addresses = [{
+        address = "192.168.0.23";
+        prefixLength = 24;
+      }];
+    };
     firewall = {
       # Or disable the firewall altogether.
       enable = false;
@@ -285,7 +291,7 @@
       # vscode
       # vscode-fhs
 
-      clash
+      clash-meta
       code-server
       frp
 

@@ -4,10 +4,10 @@ let
 in
 pkgs.mkShell {
   nativeBuildInputs = with pkgs; [
-    pkgconfig
-    glib
-    glibc
-    libstdcxx5
+    # pkgconfig
+    # glib
+    # glibc
+    # libstdcxx5
   ];
   buildInputs = with pkgs;[
     # cargo
@@ -15,9 +15,9 @@ pkgs.mkShell {
   shellHook = ''
     export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:${
       pkgs.lib.makeLibraryPath  [
-        pkgs.stdenv.cc.cc.lib
-        pkgs.glib
-        pkgs.glibc
+        # pkgs.stdenv.cc.cc.lib
+        # pkgs.glib
+        # pkgs.glibc
         # pkgs.libstdcxx5
       ]
     }"'';
