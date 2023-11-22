@@ -15,7 +15,7 @@ in
       };
       serviceConfig = {
         User = "trdthg";
-        ExecStart = "${pkgs.code-server}/bin/code-server --config /home/trdthg/nixos-config/config/private/code-server.yaml --user-data-dir /home/trdthg/.vscode --bind-addr localhost:50002";
+        ExecStart = "${pkgs.openvscode-server}/bin/openvscode-server --connection-token-file /home/trdthg/nixos-config/config/private/openvscode-server.token  --host 127.0.0.1 --port 50002";
       };
       wantedBy = [ "multi-user.target" ];
     };

@@ -190,7 +190,7 @@
   security.polkit.enable = true;
 
   services.dbus.enable = true;
-  # 
+  #
   programs.dconf.enable = true;
   services.gnome.gnome-keyring.enable = true;
 
@@ -292,7 +292,8 @@
       # vscode-fhs
 
       clash-meta
-      code-server
+      # vscode was removed from nixpkgs since 2023-11-22
+      openvscode-server
       frp
 
       p7zip
