@@ -10,6 +10,14 @@
     virtualbox = {
       host.enable = true;
     };
+    vmware = {
+      # guest = {
+      #   enable = true;
+      # };
+      host = {
+        enable = true;
+      };
+    };
     podman = {
       enable = false;
       # Create a `docker` alias for podman, to use it as a drop-in replacement
