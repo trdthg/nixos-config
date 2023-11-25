@@ -256,6 +256,9 @@
     password = "1789";
     extraGroups = [ "wheel" "video" "audio" "docker" "adbusers" "libvirtd" ]; # Enable 'sudo' for the user.
     packages = with pkgs; [
+      # polkit
+      polkit_gnome
+
       cifs-utils
       simple-http-server
       # glib
