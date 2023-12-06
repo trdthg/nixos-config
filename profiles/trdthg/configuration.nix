@@ -261,8 +261,8 @@
 
       cifs-utils
       simple-http-server
-      # glib
-      # glibc
+      glib
+      glibc
       libclang
       # for nix-ld lldb
       zlib
