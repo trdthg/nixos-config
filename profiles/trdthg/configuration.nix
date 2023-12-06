@@ -303,11 +303,12 @@
       zip
 
       tokei
-      # zellij
+      zellij
       tmux
       ripgrep
       bat
       autocorrect
+      wayvnc
       # yuzu-ea
       # steam and gamepad
       steam

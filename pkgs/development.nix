@@ -39,6 +39,8 @@ in
 
     # rust openssl
     rustup
+    cargo
+    rust-analyzer
 
     # zig
     zig
@@ -47,7 +49,6 @@ in
     # perl
     perl536Packages.PLS
 
-    # rust-analyzer
     # openssl
     # expat
     # fontconfig

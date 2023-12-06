@@ -21,7 +21,8 @@ in
       };
       serviceConfig = {
         User = "trdthg";
-        ExecStart = "${pkgs.frp}/bin/frpc -c /home/trdthg/nixos-config/config/private/frpc.ini";
+        ExecStart = "${pkgs.frp}/bin/frpc -c /home/trdthg/nixos-config/config/private/frpc.toml";
+        ExecReload = "${pkgs.frp}/bin/frpc reload -c /home/trdthg/nixos-config/config/private/frpc.toml";
       };
       wantedBy = [ "multi-user.target" ];
     };
