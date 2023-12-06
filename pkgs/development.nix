@@ -40,7 +40,7 @@ in
     # rust openssl
     rustup
     cargo
-    rust-analyzer
+    # rust-analyzer
 
     # zig
     zig

@@ -28,6 +28,19 @@
       # flutter chrome alias
       export CHROME_EXECUTABLE="google-chrome-stable";
       # export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:${pkgs.xorg.libX11.dev}/lib:${pkgs.gtk3}/lib:${pkgs.pango.dev.out}/lib:${pkgs.pcre2}/lib";
+      export LD_LIBRARY_PATH="${
+        pkgs.lib.makeLibraryPath [
+          # pkgs.stdenv.cc.cc
+          # pkgs.zlib
+          # pkgs.openssl
+          # pkgs.libxcrypt
+          # pkgs.libxcrypt-legacy
+          # pkgs.glib
+          pkgs.glibc
+        ]
+      }:$LD_LIBRARY_PATH"
+      unset LD_LIBRARY_PATH
+      
     '';
     shellAliases = {
       ll = "ls -l";

@@ -15,7 +15,7 @@ in
       };
       serviceConfig = {
         User = "trdthg";
-        ExecStart = "${pkgs.openvscode-server}/bin/openvscode-server --connection-token-file /home/trdthg/nixos-config/config/private/openvscode-server.token  --host 127.0.0.1 --port 50002";
+        ExecStart = "${pkgs.openvscode-server}/bin/openvscode-server --connection-token-file /home/trdthg/nixos-config/config/private/openvscode-server.token  --host 0.0.0.0 --port 50002";
       };
       wantedBy = [ "multi-user.target" ];
     };

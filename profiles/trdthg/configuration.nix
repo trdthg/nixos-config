@@ -261,8 +261,8 @@
 
       cifs-utils
       simple-http-server
-      glib
-      glibc
+      # glib
+      # glibc
       libclang
       # for nix-ld lldb
       zlib
@@ -303,7 +303,7 @@
       zip
 
       tokei
-      zellij
+      # zellij
       tmux
       ripgrep
       bat
@@ -330,7 +330,7 @@
     #   # pkgs.openssl
     # ];
     # NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
-    LD_LIBRARY_PATH = ''$LD_LIBRARY_PATH:${
+    LD_LIBRARY_PATH = ''${
       pkgs.lib.makeLibraryPath [
         # pkgs.stdenv.cc.cc
         pkgs.zlib
@@ -340,11 +340,10 @@
         # pkgs.glib
         # pkgs.glibc
       ]
-    }'';
+    }:$LD_LIBRARY_PATH'';
     LIBCLANG_PATH = "${pkgs.libclang.lib}/lib";
     NIXPKGS_ALLOW_INSECURE = "1";
   };
-
 
   environment.sessionVariables = {
     EDITOR = "nvim";
