@@ -16,8 +16,8 @@ in
     systemd.services.frpc = {
       unitConfig = {
         Type = "simple";
-        After = "NetworkManager.service";
-        Requires = "NetworkManager.service";
+        Wants = "network-online.target NetworkManager.service";
+        After = "network.target network-online.target NetworkManager.service";
       };
       serviceConfig = {
         User = "trdthg";
