@@ -14,82 +14,82 @@
     #   # rust-analyzer
     #   # nix
     # ]);
-    extensions = with pkgs.vscode-extensions; [
+    # extensions = with pkgs.vscode-extensions; [
 
-      arrterian.nix-env-selector
+    #   arrterian.nix-env-selector
 
-      shardulm94.trailing-spaces
-      bierner.markdown-emoji
-      # bierner.markdown-preview-github-styles
-      # bierner.markdown-prism
-      # bierner.markdown-yaml-preamble
-      # DavidAnson.vscode-markdownlint
-      christian-kohler.path-intellisense
+    #   shardulm94.trailing-spaces
+    #   bierner.markdown-emoji
+    #   # bierner.markdown-preview-github-styles
+    #   # bierner.markdown-prism
+    #   # bierner.markdown-yaml-preamble
+    #   # DavidAnson.vscode-markdownlint
+    #   christian-kohler.path-intellisense
 
 
-      # cweijan.vscode-database-client2
-      # Davidsekar.redis-xplorer
+    #   # cweijan.vscode-database-client2
+    #   # Davidsekar.redis-xplorer
 
-      # bmewburn.vscode-intelephense-client
-      # github.copilot
+    #   # bmewburn.vscode-intelephense-client
+    #   # github.copilot
 
-      intellsmi.comment-translate
-      # kisstkondoros.vscode-gutter-preview
-      # llvm-vs-code-extensions.vscode-clangd
-      # maciejdems.add-to-gitignore
+    #   intellsmi.comment-translate
+    #   # kisstkondoros.vscode-gutter-preview
+    #   # llvm-vs-code-extensions.vscode-clangd
+    #   # maciejdems.add-to-gitignore
 
-      # DotJoshJohnson.xml
-      # denoland.vscode-deno
-      # justusadam.language-haskell
-      # golang.go
-      # haskell.haskell
-      jnoortheen.nix-ide
-      tamasfe.even-better-toml
-      mads-hartmann.bash-ide-vscode
-      foxundermoon.shell-format
-      rust-lang.rust-analyzer
-      serayuzgur.crates
-      # FractalBoy.pls
+    #   # DotJoshJohnson.xml
+    #   # denoland.vscode-deno
+    #   # justusadam.language-haskell
+    #   # golang.go
+    #   # haskell.haskell
+    #   jnoortheen.nix-ide
+    #   tamasfe.even-better-toml
+    #   mads-hartmann.bash-ide-vscode
+    #   foxundermoon.shell-format
+    #   rust-lang.rust-analyzer
+    #   serayuzgur.crates
+    #   # FractalBoy.pls
 
-      # eamodio.gitlens
-      # donjayamanne.githistory
+    #   # eamodio.gitlens
+    #   # donjayamanne.githistory
 
-      ms-azuretools.vscode-docker
-      ms-vscode-remote.remote-containers
-      ms-vscode-remote.remote-ssh
-      # ms-vscode-remote.vscode-remote-extensionpack
-      # ms-vscode.azure-repos
-      # ms-vscode.cmake-tools
-      # ms-vscode.cpptools
-      ms-vscode.hexeditor
-      # ms-vscode.remote-repositories
-      # ms-vscode.remote-server
+    #   ms-azuretools.vscode-docker
+    #   ms-vscode-remote.remote-containers
+    #   #ms-vscode-remote.remote-ssh
+    #   # ms-vscode-remote.vscode-remote-extensionpack
+    #   # ms-vscode.azure-repos
+    #   # ms-vscode.cmake-tools
+    #   # ms-vscode.cpptools
+    #   ms-vscode.hexeditor
+    #   # ms-vscode.remote-repositories
+    #   # ms-vscode.remote-server
 
-      # github.github-vscode-theme
-      # equinusocio.vsc-material-theme-icons
-      # akamud.vscode-theme-onelight
-      # muuvmuuv.vscode-sundial
-      # naumovs.color-highlight
-      # PKief.material-icon-theme
+    #   # github.github-vscode-theme
+    #   # equinusocio.vsc-material-theme-icons
+    #   # akamud.vscode-theme-onelight
+    #   # muuvmuuv.vscode-sundial
+    #   # naumovs.color-highlight
+    #   # PKief.material-icon-theme
 
-      # vadimcn.vscode-lldb
-      # surajbarkale.ninja
+    #   # vadimcn.vscode-lldb
+    #   # surajbarkale.ninja
 
-      # wangzy.sneak-mark
-      # webfreak.debug
-      # espressif.esp-idf-extension
-      # pgourlain.erlang
-      # slevesque.shader
-      # ZixuanWang.linkerscript
-      # skellock.just
-      # mrorz.language-gettext
-      # dtoplak.vscode-glsllint
-      # zxh404.vscode-proto3
-      # cduruk.thrift
-      # alingse.thirft-formatter
-      # redhat.vscode-community-server-connector
-      # redhat.vscode-rsp-ui
+    #   # wangzy.sneak-mark
+    #   # webfreak.debug
+    #   # espressif.esp-idf-extension
+    #   # pgourlain.erlang
+    #   # slevesque.shader
+    #   # ZixuanWang.linkerscript
+    #   # skellock.just
+    #   # mrorz.language-gettext
+    #   # dtoplak.vscode-glsllint
+    #   # zxh404.vscode-proto3
+    #   # cduruk.thrift
+    #   # alingse.thirft-formatter
+    #   # redhat.vscode-community-server-connector
+    #   # redhat.vscode-rsp-ui
 
-    ];
+    # ];
   };
 }
