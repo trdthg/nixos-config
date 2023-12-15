@@ -31,6 +31,7 @@
       pkgs.xdg-desktop-portal-gtk
       pkgs.xdg-desktop-portal-wlr
     ];
+    config.common.default = "*";
   };
 
   # List packages installed in system profile. To search, run:
