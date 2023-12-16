@@ -380,6 +380,8 @@
   services.frpc.enable = true;
   services.vscode-server.enable = true;
   services.clash.enable = true;
+  services.swayheadless.enable = true;
+  services.wayvnc.enable = true;
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
