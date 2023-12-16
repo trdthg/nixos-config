@@ -1,6 +1,10 @@
 { config, pkgs, lib, ... }:
 
 {
+  # 远程启动 sway + wayvnc [wayvnc FAQ](https://github.com/any1/wayvnc/blob/master/FAQ.md)
+  # WLR_BACKENDS=headless WLR_LIBINPUT_NO_DEVICES=1 sway &
+  # WAYLAND_DISPLAY=wayland-1 wayvnc 0.0.0.0 8000
+  # 修复/解决方法是在连接属性中，选择“选项”选项卡，然后将“图像质量”更改为“自动”以外的任何内容。我把我的设置为“高”。如果设置回“自动”，则返回黑色错误屏幕。
 
   wayland.windowManager.sway = {
     enable = true;
@@ -13,7 +17,7 @@
         modifier = "Mod4";
         # Use alacritty as default terminal
         # terminal = "alacritty";
-        terminal = "kitty";
+        terminal = "${pkgs.kitty}/bin/kitty";
         left = "h";
         right = "l";
         up = "k";
@@ -270,13 +274,12 @@
 
         bars = [
           {
-            command = "swaybar_command waybar";
+            command = "swaybar_command ${pkgs.waybar}/bin/waybar";
           }
         ];
 
         startup = [
           { command = "wlpinyin"; }
-          { command = "blueman-manager"; }
           { command = "systemctl --user import-environment"; }
           { command = "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK"; }
           { command = "dbus-sway-environment"; }
@@ -284,13 +287,14 @@
           {
             command = '' \
               swayidle -w \
-              timeout 600 'swaylock -f -c 000000' \
+              timeout 600 'swaylock -c 000000' \
               timeout 1200 'swaymsg " output * dpms off "' \
               resume 'swaymsg " output * dpms on "' \
-              before-sleep 'swaylock -f -c 000000'
+              before-sleep 'swaylock -c 000000'
             '';
           }
           { command = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"; }
+          { command = "${pkgs.kitty}/bin/kitty"; }
         ];
       };
     # hide titlebar

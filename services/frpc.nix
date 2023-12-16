@@ -23,6 +23,9 @@ in
         User = "trdthg";
         ExecStart = "${pkgs.frp}/bin/frpc -c /home/trdthg/nixos-config/config/private/frpc.toml";
         ExecReload = "${pkgs.frp}/bin/frpc reload -c /home/trdthg/nixos-config/config/private/frpc.toml";
+        Restart = "always";
+        StartLimitIntervalSec = 5;
+        StartLimitBurst = 10000;
       };
       wantedBy = [ "multi-user.target" ];
     };
