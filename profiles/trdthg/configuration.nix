@@ -330,17 +330,16 @@
     #   # pkgs.openssl
     # ];
     # NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
-    LD_LIBRARY_PATH = ''${
-      pkgs.lib.makeLibraryPath [
-        # pkgs.stdenv.cc.cc
-        pkgs.zlib
-        # pkgs.openssl
-        # pkgs.libxcrypt
-        # pkgs.libxcrypt-legacy
-        # pkgs.glib
-        # pkgs.glibc
-      ]
-    }:$LD_LIBRARY_PATH'';
+    # LD_LIBRARY_PATH = ''${
+    #   pkgs.lib.makeLibraryPath [
+    #     # pkgs.stdenv.cc.cc
+    #     # pkgs.zlib
+    #     # pkgs.openssl
+    #     # pkgs.glib
+    #     # pkgs.glibc
+    #   ]
+    # }:$LD_LIBRARY_PATH'';
+    LD_LIBRARY_PATH = "";
     LIBCLANG_PATH = "${pkgs.libclang.lib}/lib";
     NIXPKGS_ALLOW_INSECURE = "1";
   };
@@ -357,6 +356,7 @@
     DEFAULT_BROWSER = "google-chrome";
 
     # set gtk protal
+    LD_LIBRARY_PATH = "";
     GTK_USE_PORTAL = "1";
     USE_GTK_PORTAL = "1";
   };

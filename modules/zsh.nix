@@ -27,22 +27,12 @@
 
       # flutter chrome alias
       export CHROME_EXECUTABLE="google-chrome-stable";
-      # export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:${pkgs.xorg.libX11.dev}/lib:${pkgs.gtk3}/lib:${pkgs.pango.dev.out}/lib:${pkgs.pcre2}/lib";
-      export LD_LIBRARY_PATH="${
-        pkgs.lib.makeLibraryPath [
-          # pkgs.stdenv.cc.cc
-          # pkgs.zlib
-          # pkgs.openssl
-          # pkgs.libxcrypt
-          # pkgs.libxcrypt-legacy
-          # pkgs.glib
-          pkgs.glibc
-        ]
-      }:$LD_LIBRARY_PATH"
+      echo $LD_LIBRARY_PATH
       unset LD_LIBRARY_PATH
 
+      TMUX_SESSION_NAME=$USER-tmux-session-$(echo "$(pwd)" | shasum | cut -f1 -d" ")
       if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
-          tmux attach-session -t $USER || tmux new-session -s $USER
+          tmux attach-session -t $TMUX_SESSION_NAME || tmux new-session -s $TMUX_SESSION_NAME
       fi
     '';
     shellAliases = {

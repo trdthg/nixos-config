@@ -22,17 +22,11 @@
   home.stateVersion = "23.11";
 
   home.sessionVariables = {
-    LD_LIBRARY_PATH = ''${
-      pkgs.lib.makeLibraryPath [
-        # pkgs.stdenv.cc.cc
-        # pkgs.zlib
-        # pkgs.openssl
-        # pkgs.libxcrypt
-        # pkgs.libxcrypt-legacy
-        # pkgs.glib
-        # pkgs.glibc
-      ]
-    }:$LD_LIBRARY_PATH'';
+    # LD_LIBRARY_PATH = ''${
+    #   pkgs.lib.makeLibraryPath [
+    #     # pkgs.zlib
+    #   ]
+    # }:$LD_LIBRARY_PATH'';
   };
 
   # Let Home Manager install and manage itself.

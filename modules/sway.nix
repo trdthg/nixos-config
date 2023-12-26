@@ -5,7 +5,42 @@
   # WLR_BACKENDS=headless WLR_LIBINPUT_NO_DEVICES=1 sway &
   # WAYLAND_DISPLAY=wayland-1 wayvnc 0.0.0.0 8000
   # 修复/解决方法是在连接属性中，选择“选项”选项卡，然后将“图像质量”更改为“自动”以外的任何内容。我把我的设置为“高”。如果设置回“自动”，则返回黑色错误屏幕。
-
+  # wayland.windowManager.hyprland = {
+  #   enable = true;
+  #   settings = {
+  #     "$mod" = "SUPER";
+  #     bind =
+  #       [
+  #         "$mod, F, exec, firefox"
+  #         "$mod, Enter, exec, kitty"
+  #         ", Print, exec, grimblast copy area"
+  #       ]
+  #       ++ (
+  #         # workspaces
+  #         # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
+  #         builtins.concatLists (builtins.genList
+  #           (
+  #             x:
+  #             let
+  #               ws =
+  #                 let
+  #                   c = (x + 1) / 10;
+  #                 in
+  #                 builtins.toString (x + 1 - (c * 10));
+  #             in
+  #             [
+  #               "$mod, ${ws}, workspace, ${toString (x + 1)}"
+  #               "$mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
+  #             ]
+  #           )
+  #           10)
+  #       );
+  #   };
+  #   # plugins = [
+  #   #   inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
+  #   #   "/absolute/path/to/plugin.so"
+  #   # ];
+  # };
   wayland.windowManager.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
@@ -32,7 +67,9 @@
           eDP-1 = {
             pos = "0,0";
             mode = "2560x1600@60Hz";
-            scale = "1.8";
+            scale = "1.5";
+            # "stretch",  "fill",  "fit", "center", "tile"
+            bg = "~/wallpaper.png center";
           };
         };
 
