@@ -4,7 +4,8 @@
   programs.vscode = {
     enable = true;
     package =
-      pkgs.vscode-fhs;
+      pkgs.vscode;
+    # pkgs.vscode-fhs;
     # pkgs.vscode.fhsWithPackages (ps: with ps; [
     #   rustup
     #   zlib

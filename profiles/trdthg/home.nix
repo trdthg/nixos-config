@@ -21,13 +21,7 @@
   # changes in each release.
   home.stateVersion = "23.11";
 
-  home.sessionVariables = {
-    # LD_LIBRARY_PATH = ''${
-    #   pkgs.lib.makeLibraryPath [
-    #     # pkgs.zlib
-    #   ]
-    # }:$LD_LIBRARY_PATH'';
-  };
+  home.sessionVariables = { };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

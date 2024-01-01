@@ -27,11 +27,12 @@
 
       # flutter chrome alias
       export CHROME_EXECUTABLE="google-chrome-stable";
-      echo $LD_LIBRARY_PATH
+      echo "LD_LIBRARY_PATH: [$LD_LIBRARY_PATH]"
       unset LD_LIBRARY_PATH
 
-      TMUX_SESSION_NAME=$USER-tmux-session-$(echo "$(pwd)" | shasum | cut -f1 -d" ")
-      if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
+      TMUX_SESSION_NASSME=$USER-tmux-session-$(echo "$(pwd)" | shasum | cut -f1 -d" ")
+      # && [[ -n "$SSH_CONNECTION" ]]
+      if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]]; then
           tmux attach-session -t $TMUX_SESSION_NAME || tmux new-session -s $TMUX_SESSION_NAME
       fi
     '';
