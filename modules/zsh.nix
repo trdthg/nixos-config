@@ -30,18 +30,18 @@
       echo "LD_LIBRARY_PATH: [$LD_LIBRARY_PATH]"
       unset LD_LIBRARY_PATH
 
-      TMUX_SESSION_NASSME=$USER-tmux-session-$(echo "$(pwd)" | shasum | cut -f1 -d" ")
-      # && [[ -n "$SSH_CONNECTION" ]]
-      if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]]; then
+      TMUX_SESSION_NAME=$USER-tmux-session-$(echo "$(pwd)" | shasum | cut -f1 -d" ")
+      if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
           tmux attach-session -t $TMUX_SESSION_NAME || tmux new-session -s $TMUX_SESSION_NAME
       fi
     '';
     shellAliases = {
-      ll = "ls -l";
+      ll = "ls -lh";
       gcn = "git clone";
       pcgu = "wl-copy $((wl-paste > ~/tmp/screenshot.png && picgo u ~/tmp/screenshot.png ) | tail -1)";
       # update = "sudo nixos-rebuild switch";
       chrome = "google-chrome-stable --enable-features=UseOzonePlatform --ozone-platform=wayland --password-store=basic";
+      tmux-attach = "tmux attach-session -t $TMUX_SESSION_NAME || tmux new-session -s $TMUX_SESSION_NAME";
     };
     history = {
       size = 10000;
