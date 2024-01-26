@@ -103,10 +103,10 @@
         "Xiaomi_B7A8".psk = "hk123456";
       };
     };
-    nameservers = [ "1.1.1.1" "8.8.8.8" "8.8.4.4" ];
+    nameservers = [ "8.8.8.8" "8.8.4.4" "1.1.1.1" ];
     extraHosts =
       ''
-        # 127.0.0.1 55e19a41e9ef
+        140.82.113.4 github.com
       '';
   };
 
@@ -288,6 +288,7 @@
       # meson
       pkg-config
       jq
+      file
       steam-run
 
       #
@@ -300,6 +301,7 @@
       firefox
       google-chrome
       tdesktop
+      vlc
       # vscode
       # vscode-fhs
 
@@ -310,10 +312,14 @@
 
       p7zip
       zip
+      dig
+      minicom
+      socat
 
       tokei
       # zellij
       tmux
+      tmate
       ripgrep
       bat
       autocorrect
@@ -332,22 +338,8 @@
     }).extraPackages;
   };
 
-  programs.nix-ld.enable = true;
+  # programs.nix-ld.enable = true;
   environment.variables = {
-    # NIX_LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
-    #   pkgs.stdenv.cc.cc
-    #   # pkgs.openssl
-    # ];
-    # NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
-    # LD_LIBRARY_PATH = ''${
-    #   pkgs.lib.makeLibraryPath [
-    #     # pkgs.stdenv.cc.cc
-    #     # pkgs.zlib
-    #     # pkgs.openssl
-    #     # pkgs.glib
-    #     # pkgs.glibc
-    #   ]
-    # }:$LD_LIBRARY_PATH'';
     LD_LIBRARY_PATH = "";
     LIBCLANG_PATH = "${pkgs.libclang.lib}/lib";
     NIXPKGS_ALLOW_INSECURE = "1";
