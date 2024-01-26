@@ -313,7 +313,8 @@
           "memory"
           "disk"
           "temperature"
-          "idle_inhibitor"
+          # "mpd"
+          # "idle_inhibitor"
           # "sway/mode"
           # "custom/media"
           # "keyboard-state"
@@ -327,7 +328,6 @@
         ];
         modules-right = [
           # "custom/mymodule#with-css-id"
-          # "mpd"
           # "keyboard-state"
           "pulseaudio"
           "network"
@@ -414,15 +414,13 @@
             "warning" = 30;
             "critical" = 15;
           };
-          "format" = "{icon} {capacity}%";
+          "format" = "{icon}  {capacity}%";
           "format-charging" = " {capacity}%";
           "format-plugged" = " {capacity}% ";
           "format-alt" = "{icon} {time}";
           "format-icons" = [ "" "" "" "" "" ];
         };
-        "battery#bat2" = {
-          "bat" = "BAT2";
-        };
+
         "network" = {
           "format-wifi" = "  {essid} ({signalStrength}%)";
           "format-ethernet" = " {ipaddr}/{cidr}";
