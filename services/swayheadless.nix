@@ -22,7 +22,7 @@ in
           "WLR_BACKENDS=headless"
           "WLR_LIBINPUT_NO_DEVICES=1"
           "XDG_RUNTIME_DIR=/run/swayheadless"
-          "PATH=$PATH:${pkgs.dbus}/bin:${pkgs.waybar}/bin:${pkgs.kitty}/bin"
+          "PATH=$PATH:${pkgs.dbus}/bin:${pkgs.waybar}/bin:${pkgs.kitty}/bin:${pkgs.firefox}/bin:${pkgs.wofi}/bin"
         ];
         ExecStart = ''${pkgs.sway}/bin/sway'';
       };

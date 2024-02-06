@@ -324,17 +324,15 @@
           {
             command = '' \
               swayidle -w \
-              timeout 600 'swaylock -c 000000' \
+              timeout 600 'swaylock -f -c 000000' \
               timeout 1200 'swaymsg " output * dpms off "' \
               resume 'swaymsg " output * dpms on "' \
-              before-sleep 'swaylock -c 000000'
+              before-sleep 'swaylock -f -c 000000'
             '';
           }
           { command = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"; }
           { command = "${pkgs.kitty}/bin/kitty"; }
         ];
       };
-    # hide titlebar
-
   };
 }

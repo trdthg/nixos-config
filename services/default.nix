@@ -6,5 +6,6 @@
     ./clash.nix
     ./swayheadless.nix
     ./wayvnc.nix
+    ./webssh.nix
   ];
 }

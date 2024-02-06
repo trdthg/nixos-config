@@ -305,10 +305,12 @@
       # vscode
       # vscode-fhs
 
+      # services
       clash-meta
       # vscode was removed from nixpkgs since 2023-11-22
       openvscode-server
       frp
+      webssh
 
       p7zip
       zip
@@ -340,8 +342,7 @@
 
   # programs.nix-ld.enable = true;
   environment.variables = {
-    LD_LIBRARY_PATH = "";
-    LIBCLANG_PATH = "${pkgs.libclang.lib}/lib";
+    # LIBCLANG_PATH = "${pkgs.libclang.lib}/lib";
     NIXPKGS_ALLOW_INSECURE = "1";
   };
 
@@ -357,7 +358,6 @@
     DEFAULT_BROWSER = "google-chrome";
 
     # set gtk protal
-    LD_LIBRARY_PATH = "";
     GTK_USE_PORTAL = "1";
     USE_GTK_PORTAL = "1";
   };
@@ -373,8 +373,13 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-  services.openssh.settings.PasswordAuthentication = false;
+  services.openssh = {
+    enable = true;
+    settings.PasswordAuthentication = false;
+    extraConfig = ''
+      AcceptEnv LD_LIBRARY_PATH LD_PRLEOAD ASDSASDDS
+    '';
+  };
 
   services.logind.lidSwitch = "ignore";
   # Custom services
@@ -383,6 +388,7 @@
   services.clash.enable = true;
   services.swayheadless.enable = true;
   services.wayvnc.enable = true;
+  services.webssh.enable = true;
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
