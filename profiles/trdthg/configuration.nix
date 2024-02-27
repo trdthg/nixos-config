@@ -326,7 +326,7 @@
       bat
       autocorrect
       wayvnc
-      texlive.combined.scheme-full
+      # texlive.combined.scheme-full
       # yuzu-ea
       # steam and gamepad
       steam

@@ -2,9 +2,21 @@
 , pkgs
 , ...
 }:
-# let
-#   android = pkgs.callPackage ./android.nix { };
-# in
+let
+  #   android = pkgs.callPackage ./android.nix { };
+  getip = pkgs.writeTextFile {
+    name = "configure-gtk";
+    destination = "/bin/getip";
+    executable = true;
+    text =
+      let
+        A = 42;
+      in
+      ''
+        ip addr | grep inet | grep -v 127.0.0.1 | grep -v inet6 | grep `ip route | grep '^default' | awk '{print $5}'` | awk '{print $2}'
+      '';
+  };
+in
 {
   imports = [
     ./java.nix
@@ -37,6 +49,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    getip
+
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     tree
     wget
@@ -52,7 +66,6 @@
     # v4l-utils
 
     appimage-run
-
     pulseaudioFull
 
     # texlive.combined.scheme-full
