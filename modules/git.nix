@@ -17,13 +17,13 @@
       # credential.helper = "${
       #     pkgs.git.override { withLibsecret = true; }
       #   }/bin/git-credential-libsecret";
-      http = {
-        proxy = http://127.0.0.1:17890;
-        # sslverify = false
-      };
-      https = {
-        proxy = http://127.0.0.1:17890;
-      };
+      # http = {
+      #   proxy = http://127.0.0.1:17890;
+      #   # sslverify = false
+      # };
+      # https = {
+      #   proxy = http://127.0.0.1:17890;
+      # };
     };
   };
 }

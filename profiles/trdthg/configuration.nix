@@ -49,6 +49,11 @@
     permittedInsecurePackages = [
       "nodejs-16.20.2"
     ];
+    packageOverrides = pkgs: {
+      # warp-beta = import (fetchTarball "https://github.com/imadnyc/nixpkgs/archive/refs/heads/warp-terminal-initial-linux.zip") {
+      #   config = config.nixpkgs.config;
+      # };
+    };
   };
 
   networking = {
@@ -117,7 +122,6 @@
   time.timeZone = "Asia/Shanghai";
 
   # Configure network proxy if necessary
-  # networking.proxy.default = "http://192.168.1.105:7890";
   networking.proxy.default = "http://127.0.0.1:17890";
   networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain,::1";
 
