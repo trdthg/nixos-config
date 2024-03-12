@@ -311,8 +311,7 @@
 
       # services
       clash-meta
-      # vscode was removed from nixpkgs since 2023-11-22
-      openvscode-server
+      # code-server
       frp
       webssh
 
@@ -331,10 +330,6 @@
       autocorrect
       wayvnc
       # texlive.combined.scheme-full
-      # yuzu-ea
-      # steam and gamepad
-      steam
-      xboxdrv
       obs-studio
       # wdisplays
       # wlr-randr
@@ -389,7 +384,7 @@
   services.logind.lidSwitch = "ignore";
   # Custom services
   services.frpc.enable = true;
-  services.vscode-server.enable = true;
+  # services.vscode-server.enable = true;
   services.clash.enable = true;
   services.swayheadless.enable = true;
   services.wayvnc.enable = true;
