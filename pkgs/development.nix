@@ -15,9 +15,6 @@ in
     # zlib
     # xz # libzima
 
-    # nix
-    rnix-lsp
-
     # bash
     nodePackages.bash-language-server
     shellcheck

@@ -333,7 +333,6 @@
           "network"
           "backlight"
           "battery"
-          "battery#bat2"
           "clock"
           "tray"
         ];

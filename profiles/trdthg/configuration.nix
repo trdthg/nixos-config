@@ -225,6 +225,11 @@
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
+      source-han-sans
+      source-han-serif
+
       nerdfonts
       # (nerdfonts.override { fonts = [ "DroidSansMono" ]; })
 
@@ -233,9 +238,24 @@
     ];
     # fontconfig = {
     #   defaultFonts = {
-    #     serif = [ "noto-fonts" "noto-fonts-emoji" "Noto Sans CJK SC" "WenQuanYi Zen Hei" ];
-    #     sansSerif = [ "noto-fonts" "noto-fonts-emoji" "Noto Sans CJK SC" "WenQuanYi Zen Hei" ];
-    #     monospace = [ "JetBrainsMono NerdFont" "Noto Sans Mono CJK SC" ];
+    #     emoji = [ "Noto Color Emoji" ];
+    #     monospace = [
+    #       "Noto Sans Mono CJK SC"
+    #       "Sarasa Mono SC"
+    #       "DejaVu Sans Mono"
+    #     ];
+    #     sansSerif = [
+    #       "Noto Sans CJK SC"
+    #       "Source Han Sans SC"
+    #       "DejaVu Sans"
+    #       "WenQuanYi Zen Hei"
+    #     ];
+    #     serif = [
+    #       "Noto Serif CJK SC"
+    #       "Source Han Serif SC"
+    #       "DejaVu Serif"
+    #       "WenQuanYi Zen Hei"
+    #     ];
     #   };
     # };
   };
@@ -323,10 +343,13 @@
 
       tokei
       # zellij
+      imgcat
+      dust
       tmux
       tmate
       ripgrep
       bat
+      realvnc-vnc-viewer
       autocorrect
       wayvnc
       # texlive.combined.scheme-full
