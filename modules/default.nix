@@ -1,12 +1,13 @@
-{ config, pkgs, ... }:
-{
+{ config, pkgs, ... }: {
 
-  home.packages = with pkgs; [
+  home.packages = with pkgs;
+    [
 
-  ];
+    ];
 
   imports = [
     ./git.nix
+    ./java.nix
     ./zsh.nix
     ./sway.nix
     ./waybar.nix

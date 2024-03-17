@@ -5,13 +5,12 @@
 { config, pkgs, lib, ... }:
 
 {
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ../../pkgs/default.nix
-      ../../services/default.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ../../pkgs/default.nix
+    ../../services/default.nix
+  ];
 
   # For mount.cifs, required unless domain name resolution is not needed.
   # fileSystems."/mnt/Share" = {
@@ -35,9 +34,7 @@
         --delete-older-than 14d
       '';
     };
-    extraOptions = ''
-
-    '';
+    extraOptions = "\n";
   };
 
   system.autoUpgrade.enable = true;
@@ -46,14 +43,13 @@
   nixpkgs.config = {
     allowUnfree = true;
     android_sdk.accept_license = true;
-    permittedInsecurePackages = [
-      "nodejs-16.20.2"
-    ];
-    packageOverrides = pkgs: {
-      # warp-beta = import (fetchTarball "https://github.com/imadnyc/nixpkgs/archive/refs/heads/warp-terminal-initial-linux.zip") {
-      #   config = config.nixpkgs.config;
-      # };
-    };
+    permittedInsecurePackages = [ "nodejs-16.20.2" ];
+    packageOverrides = pkgs:
+      {
+        # warp-beta = import (fetchTarball "https://github.com/imadnyc/nixpkgs/archive/refs/heads/warp-terminal-initial-linux.zip") {
+        #   config = config.nixpkgs.config;
+        # };
+      };
   };
 
   networking = {
@@ -72,8 +68,14 @@
       # Open ports in the firewall.
       allowedTCPPorts = [ 80 443 7500 7890 ];
       allowedTCPPortRanges = [
-        { from = 50000; to = 51000; }
-        { from = 8000; to = 8010; }
+        {
+          from = 50000;
+          to = 51000;
+        }
+        {
+          from = 8000;
+          to = 8010;
+        }
       ];
       allowedUDPPortRanges = [
         # { from = 8000; to = 8010; }
@@ -82,7 +84,6 @@
     #     extraCommands = ''
     # iptables -t nat -A PREROUTING -p tcp --dport 80 -j DNAT --to-destination 172.17.0.1:80
     # iptables -t nat -A POSTROUTING -p tcp -d 172.17.0.1 --dport 80 -j SNAT --to-source 192.168.12.87
-
 
     # Pick only one of the below networking options.
     networkmanager = {
@@ -109,10 +110,9 @@
       };
     };
     nameservers = [ "8.8.8.8" "8.8.4.4" "1.1.1.1" ];
-    extraHosts =
-      ''
-        140.82.113.4 github.com
-      '';
+    extraHosts = ''
+      140.82.113.4 github.com
+    '';
   };
 
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
@@ -166,9 +166,7 @@
 
   # Fix swaylock can't unlock
   # Allow swaylock to unlock the computer for us
-  security.pam.services.swaylock = {
-    text = "auth include login";
-  };
+  security.pam.services.swaylock = { text = "auth include login"; };
 
   #
   # video, audio and bluetooth
@@ -288,24 +286,32 @@
       # 访问串口权限
       "dialout"
     ]; # Enable 'sudo' for the user.
+
     packages = with pkgs; [
+      # --------------------------- nix
+      nixfmt
+      nixd
+
+      #---------------------------- system
       # polkit
       polkit_gnome
-
+      alsa-oss
       cifs-utils
-      simple-http-server
+
+      #---------------------------- basic libs
       # glib
       # glibc
       libclang
       # for nix-ld lldb
       zlib
+      # xz # libzima
       # for rust and libcrypto
       openssl
       # openssl_1_1
       # libxcrypt
       # libxcrypt-legacy
 
-      nixpkgs-fmt
+      #---------------------------- build tool/env
       gnumake
       cmake
       # ninja
@@ -314,27 +320,32 @@
       jq
       file
       steam-run
-
-      #
-      alsa-oss
-
       docker-compose
 
+      #---------------------------- user app
       pkgs.trdthgNur.wlpinyin
 
       firefox
       google-chrome
       tdesktop
       vlc
+      simple-http-server
+      realvnc-vnc-viewer
+      obs-studio
+      # texlive.combined.scheme-full
+      # wdisplays
+      # wlr-randr
+      # thunderbird
       # vscode
       # vscode-fhs
 
-      # services
+      # --------------------------- services
       clash-meta
       # code-server
       frp
       webssh
 
+      # --------------------------- tools
       p7zip
       zip
       dig
@@ -349,18 +360,80 @@
       tmate
       ripgrep
       bat
-      realvnc-vnc-viewer
       autocorrect
       wayvnc
-      # texlive.combined.scheme-full
-      obs-studio
-      # wdisplays
-      # wlr-randr
-      # thunderbird
-    ] ++ (import ../../pkgs/development.nix {
-      config = config;
-      pkgs = pkgs;
-    }).extraPackages;
+
+      # --------------------------- develop
+      # bash
+      nodePackages.bash-language-server
+      shellcheck
+
+      # c
+      gcc
+      gdb
+      clang
+      clang-tools
+      lldb
+
+      # go
+      go
+      gopls
+      grpcurl
+      protobuf
+      protoc-gen-go-grpc
+      delve
+
+      # rust openssl
+      rustup
+      cargo
+      # rust-analyzer
+
+      # zig
+      zig
+      zls
+
+      # perl
+      perl536Packages.PLS
+
+      # openssl
+      # expat
+      # fontconfig
+
+      # flutter
+      # dart
+
+      # js/ts
+      nodejs_20
+      yarn
+      bun
+      nodePackages.pnpm
+      nodePackages.typescript
+      # deno
+
+      # python
+      python310
+      # rye
+      # pyright
+      # poetry
+
+      # java
+      # maven
+      # this doesn't automatically add JAVA_HOME to the environment
+      # latest jdk for vscode java lsp, jdk17 on write,
+      # jdk17
+
+      # haskell
+      # stack
+      # haskellPackages.ghcup
+      # haskellPackages.hls
+
+      # (vscode-with-extensions.override {
+      #   vscodeExtensions = with vscode-extensions; [
+      #     ms-vscode.cpptools
+      #     llvm-vs-code-extensions.vscode-clangd
+      #   ];
+      # })
+    ];
   };
 
   # programs.nix-ld.enable = true;

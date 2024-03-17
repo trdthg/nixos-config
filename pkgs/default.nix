@@ -19,7 +19,6 @@ let
 in
 {
   imports = [
-    ./java.nix
     ./docker.nix
   ];
 
@@ -36,7 +35,7 @@ in
   };
 
   xdg.portal = {
-    enable = true;
+    enable =  true;
     wlr.enable = true;
     # gtk portal needed to make gtk apps happy
     extraPortals = [
