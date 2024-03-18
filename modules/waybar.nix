@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-{
+{ config, pkgs, ... }: {
   programs.waybar = {
     enable = true;
     style = ''
@@ -77,7 +76,6 @@
       #cpu,
       #memory,
       #disk,
-      #temperature,
       #backlight,
       #network,
       #pulseaudio,
@@ -89,7 +87,7 @@
       #scratchpad,
       #mpd {
           padding: 0 8px;
-          border-radius: 7;
+          border-radius: 7px;
 
           color: #ffffff;
 
@@ -98,10 +96,10 @@
           /* Avoid rounded borders under each button name */
           padding: 0 5px;
           border: none;
-          border-radius: 7;
-          margin: 3;
-          margin-left: 3;
-          margin-right: 3;
+          border-radius: 7px;
+          margin: 3px;
+          margin-left: 3px;
+          margin-right: 3px;
           opacity: 1;
       }
 
@@ -214,15 +212,6 @@
           background-color: #ffa000;
       }
 
-      #temperature {
-          background-color: #f0932b;
-          color: #000000;
-      }
-
-      #temperature.critical {
-          background-color: #eb4d4b;
-      }
-
       #tray {
           background-color: black;
       }
@@ -312,7 +301,6 @@
           "cpu"
           "memory"
           "disk"
-          "temperature"
           # "mpd"
           # "idle_inhibitor"
           # "sway/mode"
@@ -340,44 +328,45 @@
         "sway/workspaces" = {
           disable-scroll = true;
           all-outputs = true;
+          window-rewrite = { };
         };
 
         "sway/mode" = {
-          "format" = '' <span style="italic">mode: {}</span> '';
-          "format-alt" = '' <span style="italic">mode: {}</span> '';
+          "format" = ''<span style="italic">mode: {}</span> '';
+          "format-alt" = ''<span style="italic">mode: {}</span> '';
         };
 
-        "keyboard-state" = {
-          "numlock" = true;
-          "capslock" = true;
-          "format" = "{name}-{icon}";
-          "format-alt" = "{name}-{icon}";
-          "format-icons" = {
-            "locked" = "Lock";
-            "unlocked" = "Unlock";
-          };
-        };
+        # "keyboard-state" = {
+        #   "numlock" = true;
+        #   "capslock" = true;
+        #   "format" = "{name}-{icon}";
+        #   "format-alt" = "{name}-{icon}";
+        #   "format-icons" = {
+        #     "locked" = "Lock";
+        #     "unlocked" = "Unlock";
+        #   };
+        # };
 
-        "sway/scratchpad" = {
-          "format" = "{icon} {count}";
-          "show-empty" = false;
-          "format-icons" = [ "" "" ];
-          "tooltip" = true;
-          "tooltip-format" = "{app}: {title}";
-        };
+        # "sway/scratchpad" = {
+        #   "format" = "{icon} {count}";
+        #   "show-empty" = false;
+        #   "format-icons" = [ "" "" ];
+        #   "tooltip" = true;
+        #   "tooltip-format" = "{app}: {title}";
+        # };
 
-        "idle_inhibitor" = {
-          "format" = "{icon}";
-          "format-icons" = {
-            "activated" = "";
-            "deactivated" = "";
-          };
-        };
-        "tray" = {
-          "spacing" = 10;
-        };
+        # "idle_inhibitor" = {
+        #   "format" = "{icon}";
+        #   "format-icons" = {
+        #     "activated" = "";
+        #     "deactivated" = "";
+        #   };
+        # };
+        "tray" = { "spacing" = 10; };
         "clock" = {
-          "tooltip-format" = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+          "tooltip-format" = ''
+            <big>{:%Y %B}</big>
+            <tt><small>{calendar}</small></tt>'';
           "format-alt" = "{:%Y-%m-%d}";
         };
         "cpu" = {
@@ -395,13 +384,13 @@
           "format-alt" = "💾 {used} / {free}";
           "path" = "/";
         };
-        "temperature" = {
-          "critical-threshold" = 60;
-          "hwmon-path" = "/sys/class/hwmon/hwmon2/temp1_input";
-          "format" = "{icon} {temperatureC}°C";
-          "format-alt" = "{icon} {temperatureC}°C";
-          "format-icons" = [ "" ];
-        };
+        # "temperature" = {
+        #   "critical-threshold" = "60px";
+        #   "hwmon-path" = "/sys/class/hwmon/hwmon2/temp1_input";
+        #   "format" = "{icon} {temperatureC}°C";
+        #   "format-alt" = "{icon} {temperatureC}°C";
+        #   "format-icons" = [ "" ];
+        # };
         "backlight" = {
           "format" = "{icon} {percent}%";
           "format-icons" = [ "" "" "" "" "" "" "" "" "" ];
@@ -448,47 +437,28 @@
           "on-click" = "pavucontrol";
         };
 
-        "custom/media" =
-          {
-            "format" = "{icon} {}";
-            "format-alt" = "{icon} {}";
-            "return-type" = "json";
-            "max-length" = 40;
-            "format-icons" = {
-              "spotify" = "";
-              "default" = "🎜";
-            };
-            "escape" = true;
-            "exec" = "$HOME/.config/waybar/mediaplayer.py 2> /dev/null";
-          };
+        # "custom/media" = {
+        #   "format" = "{icon} {}";
+        #   "format-alt" = "{icon} {}";
+        #   "return-type" = "json";
+        #   "max-length" = 40;
+        #   "format-icons" = {
+        #     "spotify" = "";
+        #     "default" = "🎜";
+        #   };
+        #   "escape" = true;
+        #   "exec" = "$HOME/.config/waybar/mediaplayer.py 2> /dev/null";
+        # };
 
-        "custom/hello-from-waybar" = {
-          format = "hello {}";
-          max-length = 40;
-          interval = "once";
-          exec = pkgs.writeShellScript "hello-from-waybar" ''
-            echo "from within waybar"
-          '';
-        };
+        # "custom/hello-from-waybar" = {
+        #   format = "hello {}";
+        #   max-length = 40;
+        #   interval = "once";
+        #   exec = pkgs.writeShellScript "hello-from-waybar" ''
+        #     echo "from within waybar"
+        #   '';
+        # };
       };
     };
   };
 }
-
-
-# // Modules configuration
-# // "sway/workspaces"= {
-# //     "disable-scroll"= true
-# //     "all-outputs"= true
-# //     "format"= "{name}= {icon}"
-# //     "format-icons"= {
-# //         "1"= ""
-# //         "2"= ""
-# //         "3"= ""
-# //         "4"= ""
-# //         "5"= ""
-# //         "urgent"= ""
-# //         "focused"= ""
-# //         "default"= ""
-# //     }
-# // }
