@@ -10,9 +10,7 @@
     ];
 
     # nix community's cache server
-    extra-substituters = [
-      "https://nix-community.cachix.org"
-    ];
+    extra-substituters = [ "https://nix-community.cachix.org" ];
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
@@ -47,25 +45,13 @@
   };
 
   # 输出配置，即 NixOS 系统配置
-  outputs =
-    { self
-    , nixpkgs
-    , nixpkgs-unstable
-    , home-manager
-    , nur
-    , trdthgNur
-    , nix-ld
-    , ...
-    }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nur, trdthgNur
+    , nix-ld, ... }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
-      unstable = import nixpkgs-unstable
-        {
-          inherit system;
-        };
-    in
-    {
+      unstable = import nixpkgs-unstable { inherit system; };
+    in {
       # 定义一个名为 nixos 的系统
       nixosConfigurations."nixos" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -90,9 +76,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.trdthg = import ./profiles/trdthg/home.nix;
-            home-manager.extraSpecialArgs = {
-              inherit unstable;
-            };
+            home-manager.extraSpecialArgs = { inherit unstable; };
             # Optionally, use home-manager.extraSpecialArgs to pass
             # arguments to home.nix
           }
@@ -103,16 +87,14 @@
             environment.systemPackages = [
               # config.nur.repos.linyinfeng.clash-premium
               # config.nur.repos.linyinfeng.clash-for-windows
-              # config.nur.repos.linyinfeng.wemeet
+              config.nur.repos.linyinfeng.wemeet
               # config.nur.repos.xddxdd.dingtalk
               # config.nur.repos.xddxdd.wechat-uos
             ];
           })
 
           nix-ld.nixosModules.nix-ld
-          {
-            programs.nix-ld.dev.enable = true;
-          }
+          { programs.nix-ld.dev.enable = true; }
         ];
       };
 

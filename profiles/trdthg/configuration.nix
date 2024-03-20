@@ -134,7 +134,11 @@
   };
 
   # Enable the X11 windowing system.
-  # services.xserver.enable = true;
+  services.xserver = {
+    enable = true;
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+  };
 
   # Configure keymap in X11
   # services.xserver.layout = "us";
@@ -176,11 +180,11 @@
 
   # Enable sound.
   # sound.enable = true;
-  # hardware.pulseaudio = {
-  #   enable = true;
-  #   extraModules = [ ];
-  #   package = pkgs.pulseaudioFull;
-  # };
+  hardware.pulseaudio = {
+    enable = false;
+    extraModules = [ ];
+    package = pkgs.pulseaudioFull;
+  };
 
   security.rtkit.enable = true;
   services.pipewire = {
@@ -201,18 +205,12 @@
   #
   # font and input
   #
-  # i18n.inputMethod = {
-  #   enabled = "fcitx5";
-  #   fcitx5.enableRimeData = true;
-  #   fcitx5.addons = with pkgs; [
-  #     fcitx5-rime
-  #     fcitx5-chinese-addons
-  #   ];
-  #   # enabled = "ibus";
-  #   # ibus.engines = with pkgs.ibus-engines; [
-  #   #   libpinyin
-  #   # ];
-  # };
+  i18n.inputMethod = {
+    # enabled = "fcitx5";
+    # fcitx5.addons = with pkgs; [ fcitx5-rime fcitx5-chinese-addons ];
+    enabled = "ibus";
+    ibus.engines = with pkgs.ibus-engines; [ libpinyin ];
+  };
 
   fonts = {
     enableDefaultPackages = true;
