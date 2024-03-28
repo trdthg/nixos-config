@@ -3,7 +3,7 @@
 , ...
 }:
 let
-  #   android = pkgs.callPackage ./android.nix { };
+  # android = pkgs.callPackage ./android.nix { };
   getip = pkgs.writeTextFile {
     name = "configure-gtk";
     destination = "/bin/getip";
@@ -103,6 +103,7 @@ in
             pkgs.pkg-config
             pkgs.ncurses
             # 如果你的 FHS 程序还有其他依赖，把它们添加在这里
+            pkgs.curl
           ]
         );
         profile = "export FHS=1";
