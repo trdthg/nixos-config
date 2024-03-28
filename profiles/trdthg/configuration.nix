@@ -206,10 +206,14 @@
   # font and input
   #
   i18n.inputMethod = {
-    # enabled = "fcitx5";
-    # fcitx5.addons = with pkgs; [ fcitx5-rime fcitx5-chinese-addons ];
-    enabled = "ibus";
-    ibus.engines = with pkgs.ibus-engines; [ libpinyin ];
+    enabled = "fcitx5";
+    fcitx5.addons = with pkgs;
+      [
+        # fcitx5-rime
+        fcitx5-chinese-addons
+      ];
+    # enabled = "ibus";
+    # ibus.engines = with pkgs.ibus-engines; [ libpinyin ];
   };
 
   fonts = {
@@ -295,6 +299,8 @@
       polkit_gnome
       alsa-oss
       cifs-utils
+      # gnome.gnome-shell-extensions
+      # gnomeExtensions.appindicator
 
       #---------------------------- basic libs
       # glib
