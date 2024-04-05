@@ -308,7 +308,7 @@
         };
       };
 
-      bars = [{ command = "swaybar_command ${pkgs.waybar}/bin/waybar"; }];
+      # bars = [{ command = "swaybar_command ${pkgs.waybar}/bin/waybar"; }];
 
       startup = [
         { command = "wlpinyin"; }

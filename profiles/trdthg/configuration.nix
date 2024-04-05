@@ -291,7 +291,7 @@
 
     packages = with pkgs; [
       # --------------------------- nix
-      nixfmt
+      nixfmt-rfc-style
       nixd
 
       #---------------------------- system
@@ -334,7 +334,7 @@
       tdesktop
       vlc
       simple-http-server
-      realvnc-vnc-viewer
+      # realvnc-vnc-viewer
       obs-studio
       # texlive.combined.scheme-full
       # wdisplays
