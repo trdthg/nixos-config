@@ -1,9 +1,17 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   # users.users.trdthg.extraGroups = [ "docker" ];
   users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
   virtualisation = {
     libvirtd.enable = true;
+    lxd = {
+      enable = true;
+    };
     docker = {
       enable = true;
     };

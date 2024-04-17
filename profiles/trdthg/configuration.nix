@@ -287,6 +287,8 @@
       "libvirtd"
       # 访问串口权限
       "dialout"
+      # lxc
+      "lxd"
     ]; # Enable 'sudo' for the user.
 
     packages = with pkgs; [
@@ -336,6 +338,8 @@
       simple-http-server
       # realvnc-vnc-viewer
       obs-studio
+      localsend
+      warp-terminal
       # texlive.combined.scheme-full
       # wdisplays
       # wlr-randr
