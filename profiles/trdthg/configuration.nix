@@ -2,7 +2,12 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   imports = [
@@ -20,9 +25,12 @@
   # };
 
   nix = {
-    package = pkgs.nixUnstable;
+    package = pkgs.git;
     settings = {
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       auto-optimise-store = true;
       trusted-users = [ "trdthg" ];
     };
@@ -44,12 +52,11 @@
     allowUnfree = true;
     android_sdk.accept_license = true;
     permittedInsecurePackages = [ "nodejs-16.20.2" ];
-    packageOverrides = pkgs:
-      {
-        # warp-beta = import (fetchTarball "https://github.com/imadnyc/nixpkgs/archive/refs/heads/warp-terminal-initial-linux.zip") {
-        #   config = config.nixpkgs.config;
-        # };
-      };
+    packageOverrides = pkgs: {
+      # warp-beta = import (fetchTarball "https://github.com/imadnyc/nixpkgs/archive/refs/heads/warp-terminal-initial-linux.zip") {
+      #   config = config.nixpkgs.config;
+      # };
+    };
   };
 
   networking = {
@@ -57,16 +64,23 @@
     hostName = "nixos";
 
     interfaces = {
-      wlp1s0.ipv4.addresses = [{
-        address = "192.168.0.23";
-        prefixLength = 24;
-      }];
+      wlp1s0.ipv4.addresses = [
+        {
+          address = "192.168.0.23";
+          prefixLength = 24;
+        }
+      ];
     };
     firewall = {
       # Or disable the firewall altogether.
       enable = false;
       # Open ports in the firewall.
-      allowedTCPPorts = [ 80 443 7500 7890 ];
+      allowedTCPPorts = [
+        80
+        443
+        7500
+        7890
+      ];
       allowedTCPPortRanges = [
         {
           from = 50000;
@@ -109,7 +123,11 @@
         "Xiaomi_B7A8".psk = "hk123456";
       };
     };
-    nameservers = [ "8.8.8.8" "8.8.4.4" "1.1.1.1" ];
+    nameservers = [
+      "8.8.8.8"
+      "8.8.4.4"
+      "1.1.1.1"
+    ];
     extraHosts = ''
       140.82.113.4 github.com
     '';
@@ -170,8 +188,10 @@
 
   # Fix swaylock can't unlock
   # Allow swaylock to unlock the computer for us
-  security.pam.services.swaylock = { text = "auth include login"; };
-
+  security.pam.services.swaylock = {
+    text = "auth include login";
+  };
+  # security.pki.certificateFiles = [ /etc/ssl/certs/mycert.pem ];
   #
   # video, audio and bluetooth
   #
@@ -207,11 +227,10 @@
   #
   i18n.inputMethod = {
     enabled = "fcitx5";
-    fcitx5.addons = with pkgs;
-      [
-        # fcitx5-rime
-        fcitx5-chinese-addons
-      ];
+    fcitx5.addons = with pkgs; [
+      # fcitx5-rime
+      fcitx5-chinese-addons
+    ];
     # enabled = "ibus";
     # ibus.engines = with pkgs.ibus-engines; [ libpinyin ];
   };
@@ -340,6 +359,11 @@
       obs-studio
       localsend
       warp-terminal
+      fastfetch
+      libvirt
+      virt-manager
+      virt-viewer
+
       # texlive.combined.scheme-full
       # wdisplays
       # wlr-randr
@@ -506,5 +530,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "unstable"; # Did you read the comment?
-
 }

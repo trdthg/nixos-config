@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   # 远程启动 sway + wayvnc [wayvnc FAQ](https://github.com/any1/wayvnc/blob/master/FAQ.md)
@@ -68,7 +73,7 @@
           mode = "2560x1600@60Hz";
           scale = "1.5";
           # "stretch",  "fill",  "fit", "center", "tile"
-          bg = "~/wallpaper.png center";
+          # bg = "~/wallpaper.png center";
         };
       };
 
@@ -78,13 +83,14 @@
           tap = "enabled";
           natural_scroll = "enabled";
           dwt = "enabled";
-          accel_profile =
-            "flat"; # disable mouse acceleration (enabled by default; to set it manually, use "adaptive" instead of "flat")
+          accel_profile = "flat"; # disable mouse acceleration (enabled by default; to set it manually, use "adaptive" instead of "flat")
           pointer_accel = "0.5"; # set mouse sensitivity (between -1 and 1)
         };
       };
 
-      floating = { modifier = "Mod4"; };
+      floating = {
+        modifier = "Mod4";
+      };
 
       keybindings = {
         # "${modifier}+End" = "";
@@ -105,12 +111,10 @@
         "XF86AudioMute" = "exec 'pactl set-sink-mute @DEFAULT_SINK@ toggle' ";
         ## fn+F2    c:122   XF86AudioLowerVolume
         # "XF86AudioLowerVolume" = ''exec ${pamixer} --allow-boost --unmute --decrease 2 && ${mywob} $(${pamixer} --get-volume)'';
-        "XF86AudioLowerVolume" =
-          "exec 'pactl set-sink-volume @DEFAULT_SINK@ -10%' ";
+        "XF86AudioLowerVolume" = "exec 'pactl set-sink-volume @DEFAULT_SINK@ -10%' ";
         ## fn+F3    c:123   XF86AudioRaiseVolume
         # "XF86AudioRaiseVolume" = ''exec ${pamixer} --allow-boost --unmute --increase 2 && ${mywob} $(${pamixer} --get-volume)'';
-        "XF86AudioRaiseVolume" =
-          "exec 'pactl set-sink-volume @DEFAULT_SINK@ +10%' ";
+        "XF86AudioRaiseVolume" = "exec 'pactl set-sink-volume @DEFAULT_SINK@ +10%' ";
         ## fn+F4    c:198   XF86AudioMicMute
         # "XF86AudioMicMute" = ''exec ${pamixer} --default-source --toggle-mute && ( ${pamixer} --default-source --get-mute && ${mywob} 0 ) || ${mywob} $(${pamixer} --default-source --get-volume)'';
         ## fn+F5    c:232   XF86MonBrightnessDown
@@ -176,8 +180,7 @@
         "${modifier}+Shift+c" = "reload";
 
         # Exit sway (logs you out of your Wayland session)
-        "${modifier}+Shift+e" =
-          "exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit' ";
+        "${modifier}+Shift+e" = "exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit' ";
 
         # "${modifier}+Escape" = "exec ${locksway}";
         # "${modifier}+Shift+Escape" = "exec ${locksway}";
@@ -313,10 +316,7 @@
       startup = [
         { command = "wlpinyin"; }
         { command = "systemctl --user import-environment"; }
-        {
-          command =
-            "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK";
-        }
+        { command = "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK"; }
         { command = "dbus-sway-environment"; }
         { command = "configure-gtk"; }
         {
@@ -329,10 +329,7 @@
                          before-sleep 'swaylock -f -c 000000'
           '';
         }
-        {
-          command =
-            "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-        }
+        { command = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"; }
         { command = "${pkgs.kitty}/bin/kitty"; }
       ];
     };
