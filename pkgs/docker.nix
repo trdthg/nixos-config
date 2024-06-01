@@ -22,9 +22,9 @@
       # guest = {
       #   enable = true;
       # };
-      host = {
-        enable = true;
-      };
+      # host = {
+      #   enable = true;
+      # };
     };
     podman = {
       enable = false;

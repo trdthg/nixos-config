@@ -25,7 +25,7 @@
   # };
 
   nix = {
-    package = pkgs.git;
+    # package = pkgs.unstable;
     settings = {
       experimental-features = [
         "nix-command"
@@ -249,7 +249,7 @@
       source-han-sans
       source-han-serif
 
-      nerdfonts
+      # nerdfonts
       # (nerdfonts.override { fonts = [ "DroidSansMono" ]; })
 
       # for steam chinese font
@@ -303,7 +303,9 @@
       "audio"
       "docker"
       "adbusers"
+      # 访问由 libvirtd 创建的 unix sock 等等
       "libvirtd"
+      "libvirt"
       # 访问串口权限
       "dialout"
       # lxc
@@ -349,6 +351,9 @@
 
       #---------------------------- user app
       pkgs.trdthgNur.wlpinyin
+
+      qq
+      zed-editor
 
       firefox
       google-chrome
