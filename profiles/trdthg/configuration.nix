@@ -175,11 +175,11 @@
   # Fix sway home-manager problems
   #
   # Fix pointer can't display
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport = true;
+    # driSupport = true; // no longer has any effect
     # steam client need this
-    driSupport32Bit = true;
+    enable32Bit = true;
     # extraPackages = with pkgs; [
     #   libGL
     # ];
