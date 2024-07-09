@@ -196,7 +196,7 @@
   # video, audio and bluetooth
   #
   hardware.bluetooth.enable = true;
-  services.blueman.enable = true;
+  # services.blueman.enable = true;
 
   # Enable sound.
   # sound.enable = true;
@@ -291,6 +291,26 @@
   programs.adb.enable = true;
   # add a shell to /etc/shells
   environment.shells = with pkgs; [ zsh ];
+  environment.gnome.excludePackages =
+    (with pkgs; [
+      # gnome-photos
+      gnome-tour
+      totem # video player
+      geary # email reader
+    ])
+    ++ (with pkgs.gnome; [
+      # cheese # webcam tool
+      # gnome-music
+      # gnome-terminal
+      # gedit # text editor
+      # epiphany # web browser
+      # evince # document viewer
+      gnome-characters
+      tali # poker game
+      iagno # go game
+      hitori # sudoku game
+      atomix # puzzle game
+    ]);
 
   # Define a user account. Don't forget to set a password with 'passwd'.
   users.users.trdthg = {
@@ -323,7 +343,6 @@
       alsa-oss
       cifs-utils
       # gnome.gnome-shell-extensions
-      # gnomeExtensions.appindicator
 
       #---------------------------- basic libs
       # glib
@@ -359,6 +378,7 @@
       google-chrome
       tdesktop
       vlc
+      calibre
       simple-http-server
       # realvnc-vnc-viewer
       obs-studio

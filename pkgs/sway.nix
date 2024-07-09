@@ -58,8 +58,6 @@ let
     configure-gtk
     wayland
     glib # gsettings
-    dracula-theme # gtk theme
-    gnome3.adwaita-icon-theme # default gnome cursors
     wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
   ];
 in
