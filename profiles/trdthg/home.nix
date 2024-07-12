@@ -5,7 +5,6 @@
   imports = [ ../../modules/default.nix ];
 
   gtk.enable = true;
-
   gtk.theme = {
     name = "WhiteSur";
     package = pkgs.whitesur-gtk-theme;

@@ -373,6 +373,8 @@
 
       qq
       zed-editor
+      zoom-us
+      newsflash
 
       firefox
       google-chrome
