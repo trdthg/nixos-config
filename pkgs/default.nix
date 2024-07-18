@@ -43,7 +43,11 @@ in
   environment.systemPackages =
     with pkgs;
     [
-      whitesur-gtk-theme
+      gnomeExtensions.user-themes
+      # whitesur-gtk-theme
+      # gnomeExtensions.dash-to-dock
+      # gnomeExtensions.blur-my-shell
+      # gnomeExtensions.systemd-manager
       # gnome.adwaita-icon-theme # default gnome cursors
       gnomeExtensions.appindicator
       gnomeExtensions.vitals

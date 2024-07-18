@@ -4,25 +4,6 @@
 
   imports = [ ../../modules/default.nix ];
 
-  gtk.enable = true;
-  gtk.theme = {
-    name = "WhiteSur";
-    package = pkgs.whitesur-gtk-theme;
-  };
-
-  # gtk theme
-  # dracula-theme
-  # whitesur-gtk-theme
-  # whitesur-icon-theme
-
-  # home.pointerCursor = {
-  #   gtk.enable = true;
-  #   x11.enable = true;
-  #   name = "WhiteSur";
-  #   package = pkgs.whitesur-cursors;
-  #   size = 24;
-  # };
-
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "trdthg";
